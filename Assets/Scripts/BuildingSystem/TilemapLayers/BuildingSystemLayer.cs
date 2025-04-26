@@ -26,14 +26,6 @@ namespace BuildingSystem.TilemapLayers
             {
                 collisionLayer.SetCollisions(buildable, true);
                 RegisterBuildableCollisionSpace(buildable);
-
-                foreach (var VARIABLE in _buildables)
-                {
-                    Debug.Log(VARIABLE.Key);
-                }
-                
-                
-                Debug.Log("===============================");
             }
             
             else _buildables.Add(coordinates, buildable);
@@ -43,12 +35,6 @@ namespace BuildingSystem.TilemapLayers
         {
             var coordinates = Tilemap.WorldToCell(worldCoordinates);
             if (!_buildables.TryGetValue(coordinates, out var buildable)) return;
-            
-
-            foreach (var VARIABLE in _buildables)
-            {
-                Debug.Log(VARIABLE.Key);
-            }
 
             if (buildable.buildableType.useCustomCollisionSpace)
             {
