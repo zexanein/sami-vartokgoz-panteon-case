@@ -1,15 +1,19 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace BuildingSystem.Models
+namespace BuildingPlacementSystem.Models
 {
     [CreateAssetMenu(menuName = "Building System/Building Data", fileName = "NewBuildingData")]
-    public class BuildingData : ScriptableObject
+    public class BuildingBlueprint : ScriptableObject
     {
         [Header("Building Data")]
         public string buildingName;
-        public Sprite previewSprite;
+        [TextArea(3, 10)]
+        public string buildingDescription;
         public Sprite displaySprite;
-        public GameObject gameObject;
+        public Sprite uiIcon;
+        public GameObject buildingPrefab;
+        public bool producingUnits;
         public int healthPoints;
         
         [Header("Placement Data")]

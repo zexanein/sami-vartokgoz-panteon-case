@@ -1,7 +1,9 @@
 using UnityEngine;
 using Extensions;
+using UnityEngine.EventSystems;
 
-public class InputController : MonoBehaviour
+public class InputManager : MonoBehaviour
 {
     public static Vector3 MouseWorldPosition => Camera.main == null ? Vector3.zero : Camera.main.ScreenToWorldPoint(Input.mousePosition).WithZ(0);
+    public static bool PointerOverUI => EventSystem.current.IsPointerOverGameObject();
 }

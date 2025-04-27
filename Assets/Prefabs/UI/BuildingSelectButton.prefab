@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 5673597509722261336}
   - component: {fileID: 3543450838487799941}
   m_Layer: 5
-  m_Name: BuildingLabel
+  m_Name: BuildingLabelBG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

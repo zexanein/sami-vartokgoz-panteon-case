@@ -1,7 +1,7 @@
-using BuildingSystem.Models;
+using BuildingPlacementSystem.Models;
 using UnityEngine;
 
-namespace BuildingSystem.TilemapLayers
+namespace BuildingPlacementSystem.TilemapLayers
 {
     public class PreviewLayer : TilemapLayer
     {
@@ -9,7 +9,7 @@ namespace BuildingSystem.TilemapLayers
         private readonly Color _validColor = new(0, 1, 0, 0.5f);
         private readonly Color _invalidColor = new(1, 0, 0, 0.5f);
 
-        public void ShowPreview(BuildingData building, Vector3 worldCoordinates, bool isValid)
+        public void ShowPreview(BuildingBlueprint building, Vector3 worldCoordinates, bool isValid)
         {
             var coordinates = Tilemap.WorldToCell(worldCoordinates);
             previewRenderer.enabled = true;
@@ -20,7 +20,7 @@ namespace BuildingSystem.TilemapLayers
                 Tilemap.cellSize / 2 +
                 building.placementOffset;
             
-            previewRenderer.sprite = building.previewSprite;
+            previewRenderer.sprite = building.displaySprite;
             previewRenderer.color = isValid ? _validColor : _invalidColor;
         }
 

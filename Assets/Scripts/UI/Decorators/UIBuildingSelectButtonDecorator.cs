@@ -1,25 +1,26 @@
-using BuildingSystem;
-using BuildingSystem.Models;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI.Decorators
 {
     public class UIBuildingSelectButtonDecorator : MonoBehaviour
     {
-        public Button button;
-        public TMP_Text labelText;
-        public Image iconImage;
-        public void InitializeVisuals(string buildingName, Sprite displaySprite)
+        [SerializeField] private Button button;
+        [SerializeField] private TMP_Text labelText;
+        [SerializeField] private Image iconImage;
+        
+        public void UpdateVisuals(string buildingName, Sprite displaySprite)
         {
             labelText.text = buildingName;
             iconImage.sprite = displaySprite;
         }
 
-        public void InitializeEvents(BuildingData building)
+        public void UpdateOnClickEvent(UnityAction onClickAction)
         {
-            button.onClick.AddListener(() => BuildingSystemController.Instance.SelectBuildingData(building));
+            button.onClick.RemoveAllListeners();
+            button.onClick.AddListener(onClickAction);
         }
     }
 }

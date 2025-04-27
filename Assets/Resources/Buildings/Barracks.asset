@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Barracks
   m_EditorClassIdentifier: 
   buildingName: Barracks
-  previewSprite: {fileID: 21300000, guid: d50ae648297e0d046b9af9654394c3d2, type: 3}
+  buildingDescription: This building can produce soldiers with different levels.
   displaySprite: {fileID: 21300000, guid: d50ae648297e0d046b9af9654394c3d2, type: 3}
-  gameObject: {fileID: 3341510373223361195, guid: d015c64fe9ded3f4694f10e12ccbc923, type: 3}
+  uiIcon: {fileID: 21300000, guid: d50ae648297e0d046b9af9654394c3d2, type: 3}
+  buildingPrefab: {fileID: 3341510373223361195, guid: d015c64fe9ded3f4694f10e12ccbc923, type: 3}
+  producingUnits: 1
   healthPoints: 100
   placementOffset: {x: 0.5, y: 0.5, z: 0}
   useCustomCollisionSpace: 1

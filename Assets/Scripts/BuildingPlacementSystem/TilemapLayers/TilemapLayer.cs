@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace BuildingSystem.TilemapLayers
+namespace BuildingPlacementSystem.TilemapLayers
 {
     [RequireComponent(typeof(Tilemap))]
     public class TilemapLayer : MonoBehaviour
