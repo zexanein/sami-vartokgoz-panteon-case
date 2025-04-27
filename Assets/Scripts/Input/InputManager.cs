@@ -4,6 +4,6 @@ using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour
 {
-    public static Vector3 MouseWorldPosition => Camera.main == null ? Vector3.zero : Camera.main.ScreenToWorldPoint(Input.mousePosition).WithZ(0);
+    public static Vector2 MouseWorldPosition => Camera.main == null ? Vector3.zero : Camera.main.ScreenToWorldPoint(Input.mousePosition).WithZ(0);
     public static bool PointerOverUI => EventSystem.current.IsPointerOverGameObject();
 }

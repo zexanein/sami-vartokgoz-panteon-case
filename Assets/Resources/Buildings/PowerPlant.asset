@@ -17,12 +17,8 @@ MonoBehaviour:
   displaySprite: {fileID: 21300000, guid: 3fdd99418598044479cec38d8ef50277, type: 3}
   uiIcon: {fileID: 21300000, guid: 3fdd99418598044479cec38d8ef50277, type: 3}
   buildingPrefab: {fileID: 1152630522925171679, guid: af0fdeef2841a624881b8fc78be7984f, type: 3}
-  producingUnits: 0
   healthPoints: 50
-  placementOffset: {x: 0.5, y: 0, z: 0}
-  useCustomCollisionSpace: 1
-  collisionSpace:
-    x: 0
-    y: -1
-    width: 2
-    height: 3
+  placementOffset: {x: 0, y: 0}
+  dimensions: {x: 2, y: 3}
+  productionData: {fileID: 0}
+  unitSpawnPointCoordinates: {x: 0, y: 0}

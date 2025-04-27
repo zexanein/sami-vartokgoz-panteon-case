@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using BuildingPlacementSystem.Models;
 using BuildingPlacementSystem.TilemapLayers;
+using Buildings;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -29,12 +29,10 @@ namespace BuildingPlacementSystem
         public PreviewLayer previewLayer;
         public List<BuildingBlueprint> buildingBlueprints = new();
         
-        [field: SerializeField]
-        public bool InBuildMode { get; private set; } = false;
-        
         [Header("Configuration")]
-        public BuildingBlueprint selectedBuildingBlueprint;
+        private BuildingBlueprint _selectedBuildingBlueprint;
         
+        public bool InBuildMode { get; private set; } = false;
         
         private void Update()
         {
@@ -43,39 +41,47 @@ namespace BuildingPlacementSystem
                 previewLayer.HidePreview();
                 return;
             }
-            
-            var mouseWorldPosition = InputManager.MouseWorldPosition;
-            
+
+            if (_selectedBuildingBlueprint == null) return;
+
             if (Input.GetMouseButtonDown(1) && !InputManager.PointerOverUI)
             {
-                if (selectedBuildingBlueprint != null) ExitBuildMode();
-                else buildingSystemLayer.Destroy(mouseWorldPosition);
+                ExitBuildMode();
+                return;
             }
-            
-            if (selectedBuildingBlueprint == null) return;
 
-            var coordinatesValid = buildingSystemLayer.IsCoordinatesValid(
+            var mouseWorldPosition = InputManager.MouseWorldPosition - _selectedBuildingBlueprint.CenterOffset;
+            var coordinatesValid = AreCoordinatesValid(mouseWorldPosition);
+            HandlePreview(mouseWorldPosition, coordinatesValid);
+            if (coordinatesValid) HandleBuild(mouseWorldPosition);
+        }
+
+        private bool AreCoordinatesValid(Vector3 mouseWorldPosition)
+        {
+            return buildingSystemLayer.AreCoordinatesValid(
                 worldCoordinates: mouseWorldPosition,
-                collisionSpace: selectedBuildingBlueprint.useCustomCollisionSpace
-                    ? selectedBuildingBlueprint.collisionSpace
-                    : default);
-            
-            previewLayer.ShowPreview
-            (
-                building: selectedBuildingBlueprint,
+                dimensions: _selectedBuildingBlueprint.dimensions
+            );
+        }
+
+        private void HandlePreview(Vector3 mouseWorldPosition, bool coordinatesValid)
+        {
+            previewLayer.ShowPreview(
+                building: _selectedBuildingBlueprint,
                 worldCoordinates: mouseWorldPosition,
                 isValid: coordinatesValid
             );
-            
-            if (Input.GetMouseButtonDown(0) && coordinatesValid && !InputManager.PointerOverUI)
-            {
-                buildingSystemLayer.Build(mouseWorldPosition, selectedBuildingBlueprint);
-            }
+        }
+
+        private void HandleBuild(Vector3 mouseWorldPosition)
+        {
+            if (!Input.GetMouseButtonDown(0) || InputManager.PointerOverUI) return;
+            buildingSystemLayer.Build(mouseWorldPosition, _selectedBuildingBlueprint);
         }
         
         public void SelectBuildingData(BuildingBlueprint buildingBlueprint)
         {
-            selectedBuildingBlueprint = buildingBlueprint;
+            _selectedBuildingBlueprint = buildingBlueprint;
         }
 
         public void EnterBuildMode()
@@ -87,7 +93,7 @@ namespace BuildingPlacementSystem
         public void ExitBuildMode()
         {
             if (!InBuildMode) return;
-            selectedBuildingBlueprint = null;
+            _selectedBuildingBlueprint = null;
             InBuildMode = false;
         }
     }

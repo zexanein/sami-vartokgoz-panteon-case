@@ -1,4 +1,6 @@
-using BuildingPlacementSystem.Models;
+using Buildings;
+using Units;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace BuildingPlacementSystem.TilemapLayers
@@ -10,7 +12,18 @@ namespace BuildingPlacementSystem.TilemapLayers
         public void SetCollisions(Building building, bool value)
         {
             var tile = value ? collisionTileBase : null;
-            building.IterateCollisionSpace(tileCoordinates => Tilemap.SetTile(tileCoordinates, tile));
+            building.IterateAllTiles(tileCoordinates => Tilemap.SetTile((Vector3Int) tileCoordinates, tile));
+        }
+
+        public void SetCollisions(Unit unit, bool value)
+        {
+            var tile = value ? collisionTileBase : null;
+            Tilemap.SetTile(unit.Coordinates, tile);
+        }
+
+        public bool HasCollisionTile(Vector2Int coordinates)
+        {
+            return Tilemap.HasTile((Vector3Int) coordinates);
         }
     }
 }

@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 7936160734799619557}
   - component: {fileID: 2714240888606581050}
   m_Layer: 5
-  m_Name: BuildingSelectButton
+  m_Name: UIBuildingSelectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

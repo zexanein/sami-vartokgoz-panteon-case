@@ -1,7 +1,9 @@
+using Extensions;
+using Units;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace BuildingPlacementSystem.Models
+namespace Buildings
 {
     [CreateAssetMenu(menuName = "Building System/Building Data", fileName = "NewBuildingData")]
     public class BuildingBlueprint : ScriptableObject
@@ -13,12 +15,15 @@ namespace BuildingPlacementSystem.Models
         public Sprite displaySprite;
         public Sprite uiIcon;
         public GameObject buildingPrefab;
-        public bool producingUnits;
         public int healthPoints;
         
         [Header("Placement Data")]
-        public Vector3 placementOffset;
-        public bool useCustomCollisionSpace;
-        public RectInt collisionSpace;
+        public Vector2Int placementOffset;
+        public Vector2Int dimensions;
+        public Vector2 CenterOffset => dimensions.Add(1).Mod(2) * -0.5f;
+        
+        [Header("Production Data")]
+        public UnitProductionData productionData;
+        public Vector2Int unitSpawnPointCoordinates;
     }
 }

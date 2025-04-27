@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using BuildingPlacementSystem.Models;
+using Buildings;
 using Extensions;
 using UnityEngine;
 
@@ -10,76 +10,71 @@ namespace BuildingPlacementSystem.TilemapLayers
     /// </summary>
     public class BuildingSystemLayer : TilemapLayer
     {
-        private Dictionary<Vector3Int, Building> _buildings = new();
+        private Dictionary<Vector2Int, Building> _buildings = new();
         public CollisionLayer collisionLayer;
-        public void Build(Vector3 worldCoordinates, BuildingBlueprint buildingBlueprint)
+        public void Build(Vector2 worldCoordinates, BuildingBlueprint buildingBlueprint)
         {
-            if (!(buildingBlueprint != null && buildingBlueprint.buildingPrefab != null)) return;
+            if (buildingBlueprint == null || buildingBlueprint.buildingPrefab == null) return;
             
             var coordinates = Tilemap.WorldToCell(worldCoordinates);
             
+            //  Instantiate building object
             var buildingGameObject = Instantiate(
                 original: buildingBlueprint.buildingPrefab,
-                position: Tilemap.CellToWorld(coordinates) + Tilemap.cellSize / 2 + buildingBlueprint.placementOffset,
+                position: GetPositionForBuilding(coordinates, buildingBlueprint),
                 rotation: Quaternion.identity);
 
-            var building = buildingGameObject.AddComponent<Building>();
-            
+            // Initialize Building component
+            if (!buildingGameObject.TryGetComponent(out Building building))
+                building = buildingGameObject.AddComponent<Building>();
             building.Initialize(buildingBlueprint, coordinates, Tilemap);
-
-            if (buildingBlueprint.useCustomCollisionSpace)
+            
+            // Place Unit SpawnPoint
+            if (building is UnitSpawnerBuilding unitSpawnerBuilding)
             {
-                collisionLayer.SetCollisions(building, true);
-                RegisterBuildableCollisionSpace(building);
+                var unitSpawnPointCellPosition = unitSpawnerBuilding.Coordinates + (Vector3Int) buildingBlueprint.unitSpawnPointCoordinates;
+                unitSpawnerBuilding.unitSpawnPoint.transform.position = Tilemap.CellToWorld(unitSpawnPointCellPosition) + Tilemap.cellSize / 2;
             }
             
-            else _buildings.Add(coordinates, building);
+            collisionLayer.SetCollisions(building, true);
+            RegisterBuildableTiles(building);
         }
 
-        public void Destroy(Vector3 worldCoordinates)
+        public void Destroy(Vector2 worldCoordinates)
         {
-            var coordinates = Tilemap.WorldToCell(worldCoordinates);
+            var coordinates = (Vector2Int) Tilemap.WorldToCell(worldCoordinates);
             if (!_buildings.TryGetValue(coordinates, out var selectableBuilding)) return;
-
-            if (selectableBuilding.Blueprint.useCustomCollisionSpace)
-            {
-                collisionLayer.SetCollisions(selectableBuilding, false);
-                UnregisterBuildableCollisionSpace(selectableBuilding);
-            }
-
+            collisionLayer.SetCollisions(selectableBuilding, false);
+            UnregisterBuildableTiles(selectableBuilding);
             _buildings.Remove(coordinates);
             selectableBuilding.Destroy();
         }
 
-        public bool IsCoordinatesValid(Vector3 worldCoordinates, RectInt collisionSpace = default)
+        public bool AreCoordinatesValid(Vector2 worldCoordinates, Vector2Int dimensions)
         {
-            var coordinates = Tilemap.WorldToCell(worldCoordinates);
-            if (!collisionSpace.Equals(default))
-            {
-                return !IsRectOccupied(coordinates, collisionSpace);
-            }
-            return !_buildings.ContainsKey(coordinates);
+            var coordinates = (Vector2Int) Tilemap.WorldToCell(worldCoordinates);
+            return !IsRectOccupied(coordinates, dimensions);
         }
 
-        private void RegisterBuildableCollisionSpace(Building building)
+        private void RegisterBuildableTiles(Building building)
         {
-            building.IterateCollisionSpace(tileCoordinates =>
+            building.IterateAllTiles(tileCoordinates =>
             {
                 _buildings.Add(tileCoordinates, building);
             });
         }
 
-        private void UnregisterBuildableCollisionSpace(Building building)
+        private void UnregisterBuildableTiles(Building building)
         {
-            building.IterateCollisionSpace(tileCoordinates =>
+            building.IterateAllTiles(tileCoordinates =>
             {
                 _buildings.Remove(tileCoordinates);
             });
         }
 
-        private bool IsRectOccupied(Vector3Int coordinates, RectInt rect)
+        private bool IsRectOccupied(Vector2Int coordinates, Vector2Int dimensions)
         {
-            return rect.Iterate(coordinates, tileCoordinates => _buildings.ContainsKey(tileCoordinates));
+            return dimensions.Iterate(coordinates - dimensions / 2, tileCoordinates => collisionLayer.HasCollisionTile(tileCoordinates));
         }
     }
 }
