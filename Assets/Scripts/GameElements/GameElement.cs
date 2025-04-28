@@ -10,12 +10,15 @@ namespace GameElements
         public GameElementBlueprint Blueprint { get; private set; }
         public Tilemap ParentTilemap { get; private set; }
         public Vector3Int Coordinates { get; private set; }
+        
+        public int Health { get; private set; }
     
         public void Initialize(GameElementBlueprint blueprint, Vector3Int coordinates, Tilemap parentTilemap)
         {
             Blueprint = blueprint;
             ParentTilemap = parentTilemap;
             Coordinates = coordinates;
+            Health = blueprint.healthPoints;
             OnInitialize();
         }
     

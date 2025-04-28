@@ -4,7 +4,6 @@ using GameElements;
 using TMPro;
 using UI.Controllers;
 using UI.Decorators;
-using Units;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -18,6 +17,12 @@ namespace UI.Views
         [SerializeField] private TMP_Text labelText;
         [SerializeField] private TMP_Text descriptionText;
         [SerializeField] private Image iconImage;
+        
+        [Header("Health and Damage")]
+        public GameObject healthObject;
+        public GameObject damageObject;
+        public TMP_Text healthText;
+        public TMP_Text damageText;
     
         [Header("Unit Production")]
         [SerializeField] private GameObject unitProductionPanel;
@@ -55,8 +60,12 @@ namespace UI.Views
 
         private void DisplayBuildingInformation(Building building)
         {
+            // Health and Destroy button
+            healthObject.SetActive(true);
+            healthText.text = building.Health.ToString();
             destroyButtonText.text = "Destruct";
             
+            // Production visuals
             var unitSpawnerBuilding = building as UnitSpawnerBuilding;
             var hasProduction = unitSpawnerBuilding != null && unitSpawnerBuilding.BuildingBlueprint.productionData != null;
             unitProductionPanel.SetActive(hasProduction);
@@ -65,6 +74,11 @@ namespace UI.Views
 
         private void DisplayUnitInformation(Unit unit)
         {
+            // Health, Damage and Destroy button
+            healthObject.SetActive(true);
+            healthText.text = unit.Health.ToString();
+            damageObject.SetActive(true);
+            damageText.text = unit.Damage.ToString();
             destroyButtonText.text = "Kill";
         }
         
@@ -79,6 +93,8 @@ namespace UI.Views
             labelText.text = string.Empty;
             descriptionText.text = string.Empty;
             iconImage.sprite = null;   
+            healthObject.SetActive(false);
+            damageObject.SetActive(false);
             unitProductionPanel.SetActive(false);
         }
 
