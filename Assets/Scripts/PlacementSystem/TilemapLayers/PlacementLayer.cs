@@ -34,6 +34,7 @@ namespace PlacementSystem.TilemapLayers
             
             collisionLayer.SetCollisions(gameElement, true);
             RegisterElementArea(gameElement);
+            
             return true;
         }
 

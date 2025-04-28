@@ -1,3 +1,4 @@
+using System;
 using Buildings;
 using GameElements;
 using PlacementSystem;
@@ -24,6 +25,19 @@ public class SelectionManager : MonoBehaviour
     public delegate void OnNothingSelectedHandler();
     public OnNothingSelectedHandler OnNothingSelected;
     
+    public GameElement SelectedElement { get; private set; }
+    public GameElement LastSelectedElement { get; private set; }
+
+    private void OnEnable()
+    {
+        PlacementManager.Instance.OnEnterPlacementMode += NothingSelected;
+    }
+
+    private void OnDisable()
+    {
+        PlacementManager.Instance.OnEnterPlacementMode -= NothingSelected;
+    }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -32,8 +46,40 @@ public class SelectionManager : MonoBehaviour
             if (InputManager.PointerOverUI) return;
             var hit = Physics2D.Raycast(InputManager.MouseWorldPosition, Vector2.zero);
             
-            if (hit.collider == null) OnNothingSelected?.Invoke();
-            else if (hit.collider.TryGetComponent(out GameElement element)) OnElementSelected?.Invoke(element);
+            if (hit.collider == null) NothingSelected();
+            else if (hit.collider.TryGetComponent(out GameElement element)) ElementSelected(element);
         }
+
+        if (Input.GetMouseButtonDown(1) && SelectedElement is Unit selectedUnit)
+        {
+            selectedUnit.MoveToPosition(InputManager.MouseWorldPosition);
+        }
+    }
+    
+    private void ElementSelected(GameElement element)
+    {
+        LastSelectedElement = SelectedElement;
+        SelectedElement = element;
+
+        if (LastSelectedElement != null && LastSelectedElement != SelectedElement)
+        {
+            LastSelectedElement.OnDeselected();
+        }
+
+        SelectedElement.OnSelected();
+        OnElementSelected?.Invoke(element);
+    }
+
+    private void NothingSelected()
+    {
+        LastSelectedElement = SelectedElement;
+        
+        if (SelectedElement != null)
+        {
+            SelectedElement.OnDeselected();
+        }
+        
+        SelectedElement = null;
+        OnNothingSelected?.Invoke();
     }
 }

@@ -36,6 +36,12 @@ namespace PlacementSystem
         public delegate void OnElementPlacedHandler();
         public OnElementPlacedHandler OnElementPlaced;
         
+        public delegate void OnEnterPlacementModeHandler();
+        public OnEnterPlacementModeHandler OnEnterPlacementMode;
+        
+        public delegate void OnExitPlacementModeHandler();
+        public OnExitPlacementModeHandler OnExitPlacementMode;
+        
         private void Update()
         {
             if (!InPlacementMode || placementLayer == null)
@@ -55,7 +61,10 @@ namespace PlacementSystem
             var mouseWorldPosition = InputManager.MouseWorldPosition - _selectedBlueprint.CenterOffset;
             var coordinatesValid = AreCoordinatesEmpty(mouseWorldPosition);
             HandlePreview(mouseWorldPosition, coordinatesValid);
-            if (coordinatesValid) HandlePlacement(mouseWorldPosition);
+            if (Input.GetMouseButtonDown(0) && coordinatesValid && !InputManager.PointerOverUI)
+            {
+                Place(mouseWorldPosition, _selectedBlueprint);
+            }
         }
 
         public void DestroyElementFrom(Vector3 worldCoordinates) => placementLayer.Destroy(worldCoordinates);
@@ -77,10 +86,9 @@ namespace PlacementSystem
             );
         }
 
-        private void HandlePlacement(Vector3 mouseWorldPosition)
+        public void Place(Vector3 mouseWorldPosition, GameElementBlueprint elementBlueprint)
         {
-            if (!Input.GetMouseButtonDown(0) || InputManager.PointerOverUI) return;
-            if (placementLayer.PlaceElement(mouseWorldPosition, _selectedBlueprint)) OnElementPlaced?.Invoke();
+            if (placementLayer.PlaceElement(mouseWorldPosition, elementBlueprint)) OnElementPlaced?.Invoke();
         }
         
         public void SelectElementData(GameElementBlueprint elementBlueprint)
@@ -92,6 +100,7 @@ namespace PlacementSystem
         {
             if (InPlacementMode) return;
             InPlacementMode = true;
+            OnEnterPlacementMode?.Invoke();
         }
 
         public void ExitPlacementMode()
@@ -99,6 +108,7 @@ namespace PlacementSystem
             if (!InPlacementMode) return;
             _selectedBlueprint = null;
             InPlacementMode = false;
+            OnExitPlacementMode?.Invoke();
         }
     }
 }

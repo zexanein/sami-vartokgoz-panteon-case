@@ -1,4 +1,5 @@
 using Blueprints;
+using UnityEngine;
 
 namespace GameElements
 {
@@ -10,6 +11,21 @@ namespace GameElements
         protected override void OnInitialize()
         {
             Damage = UnitBlueprint.damagePoints;
+        }
+
+        public override void OnSelected()
+        {
+            SpriteRenderer.color = Color.yellow;
+        }
+
+        public override void OnDeselected()
+        {
+            SpriteRenderer.color = Color.white;
+        }
+
+        public void MoveToPosition(Vector3 position)
+        {
+            
         }
     }
 }

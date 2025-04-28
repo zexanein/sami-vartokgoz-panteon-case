@@ -42,7 +42,7 @@ namespace UI.Controllers
         public void ProduceUnit(UnitSpawnerBuilding unitSpawnerBuilding, UnitBlueprint unit)
         {
             unitSpawnerBuilding.SpawnUnit(unit);
-            InformationMenuView.HideInformation();
+            InformationMenuView.DisplayElementInformation(_currentlyDisplayingElement);
         }
 
         private void OnElementPlaced()

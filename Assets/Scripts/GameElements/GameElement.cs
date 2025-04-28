@@ -10,6 +10,7 @@ namespace GameElements
         public GameElementBlueprint Blueprint { get; private set; }
         public Tilemap ParentTilemap { get; private set; }
         public Vector3Int Coordinates { get; private set; }
+        public SpriteRenderer SpriteRenderer { get; private set; }
         
         public int Health { get; private set; }
     
@@ -19,6 +20,7 @@ namespace GameElements
             ParentTilemap = parentTilemap;
             Coordinates = coordinates;
             Health = blueprint.healthPoints;
+            SpriteRenderer = GetComponent<SpriteRenderer>();
             OnInitialize();
         }
     
@@ -28,6 +30,9 @@ namespace GameElements
         {
             Blueprint.dimensions.Iterate((Vector2Int) Coordinates - Blueprint.dimensions / 2, action);
         }
+
+        public virtual void OnSelected() { }
+        public virtual void OnDeselected() { }
 
         public void Destroy()
         {
