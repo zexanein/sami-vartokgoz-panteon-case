@@ -1,6 +1,5 @@
-using System;
-using BuildingPlacementSystem;
-using Buildings;
+using Blueprints;
+using PlacementSystem;
 using UI.Views;
 using UnityEngine;
 
@@ -9,17 +8,14 @@ namespace UI.Controllers
     /// <summary>
     /// This controller handles UI functions of Production Menu
     /// </summary>
-    public class UIProductionMenuController : MonoBehaviour
+    public class UIProductionMenuController : UIControllerBase
     {
-        public UIProductionMenuView view;
-        private void Awake() => view.SetController(this);
-
-        public void OnBuildingButtonClicked(BuildingBlueprint building)
+        public void OnBuildingButtonClicked(GameElementBlueprint building)
         {
-            if (building == null) BuildingPlacementManager.Instance.ExitBuildMode();
-            else BuildingPlacementManager.Instance.EnterBuildMode();
+            if (building == null) PlacementManager.Instance.ExitPlacementMode();
+            else PlacementManager.Instance.EnterPlacementMode();
             
-            BuildingPlacementManager.Instance.SelectBuildingData(building);
+            PlacementManager.Instance.SelectElementData(building);
         }
     }
 }

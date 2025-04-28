@@ -20364,9 +20364,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingLayerID: 881191665
+  m_SortingLayer: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -20465,7 +20465,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: b17cb90e00000000c3680477f960cfe2
+  m_ApplyToSortingLayers: b17cb90e00000000c3680477f960cfe2f1ea8534
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -20740,12 +20740,12 @@ MonoBehaviour:
   labelText: {fileID: 625681607}
   descriptionText: {fileID: 1860123383}
   iconImage: {fileID: 2016596446}
-  destroyButtonText: {fileID: 1411536890}
-  destroyButton: {fileID: 423415151}
   unitProductionPanel: {fileID: 2114983474}
   unitButtonContainer: {fileID: 1280281434}
   unitSpawnPointBlockedWarningText: {fileID: 1941357765}
   unitButtonDecorator: {fileID: 1147422041286507008, guid: b98dc8c356eefa64989e0d204cfc8f68, type: 3}
+  destroyButtonText: {fileID: 1411536890}
+  destroyButton: {fileID: 423415151}
 --- !u!114 &710484517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21455,7 +21455,7 @@ GameObject:
   - component: {fileID: 1432660716}
   - component: {fileID: 1432660717}
   m_Layer: 0
-  m_Name: BuildingPlacementManager
+  m_Name: PlacementManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21488,9 +21488,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2799e755d63bc49ac975f18de3e30e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingSystemLayer: {fileID: 1665080745}
+  placementLayer: {fileID: 1665080745}
   previewLayer: {fileID: 1665080746}
-  buildingBlueprints:
+  blueprints:
   - {fileID: 11400000, guid: 9282084f1f5ff9745a5f49e72a54c252, type: 2}
   - {fileID: 11400000, guid: da35294af59e2fb44baf97bba1044ed1, type: 2}
 --- !u!1 &1452909054
@@ -21909,7 +21909,7 @@ GameObject:
   - component: {fileID: 1665080745}
   - component: {fileID: 1665080746}
   m_Layer: 0
-  m_Name: BuildingSystemLayer
+  m_Name: PlacementLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

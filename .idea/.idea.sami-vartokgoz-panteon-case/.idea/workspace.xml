@@ -5,53 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dea19160-e68f-46e0-bda7-bd596ae7a62e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Units.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Units/Soldier2.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Units/Soldier2.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Units/Soldier3.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Units/Soldier3.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Units.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Units/Unit.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Units/Unit.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Units/UnitBlueprint.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Units/UnitBlueprint.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/PlaceholderSoldier.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Sprites/PlaceholderSoldier.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.sami-vartokgoz-panteon-case/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.sami-vartokgoz-panteon-case/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Building.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Building.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Barracks.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Barracks.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/BuildingBase.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/BuildingBase.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/BuildingSelectButton.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/BuildingSelectButton.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Buildings/Barracks.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Buildings/Barracks.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Buildings/PowerPlant.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Buildings/PowerPlant.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Buildings.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Buildings/Barracks.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Buildings/Barracks.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Buildings/PowerPlant.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Buildings/PowerPlant.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Soldier.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Soldier.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Soldier2.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Soldier2.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Soldier3.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Units/Soldier3.asset.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevelopmentScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DevelopmentScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/BuildingPlacementManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/BuildingPlacementManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/Models.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/Models/BuildingBlueprint.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/Models/BuildingBlueprint.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/BuildingSystemLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/BuildingSystemLayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/CollisionLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/CollisionLayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/PreviewLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/PreviewLayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/TilemapLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/TilemapLayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/RectIntExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/RectIntExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/VectorExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/VectorExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/InputManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/InputManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIProductionMenuView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIProductionMenuView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Decorators/UIBuildingSelectButtonDecorator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Decorators/UIButtonDecorator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Decorators/UIBuildingSelectButtonDecorator.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Decorators/UIButtonDecorator.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SelectionManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SelectionManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/ChatGPT Image Apr 26, 2025, 11_39_47 PM.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TilePalettes/MainPalette.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TilePalettes/MainPalette.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UIInformationMenuController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UIInformationMenuController.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UIInformationMenuView.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UIInformationMenuView.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UIProductionMenuController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/UIProductionMenuController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/BuildingPlacementManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/BuildingPlacementManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/BuildingSystemLayer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/BuildingSystemLayer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/CollisionLayer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/CollisionLayer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/PreviewLayer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/PreviewLayer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/TilemapLayer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/TilemapLayer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/Building.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildingBlueprint.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/BuildingBlueprint.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/UnitSpawnerBuilding.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Buildings/UnitSpawnerBuilding.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/SelectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/SelectionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIInformationMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIInformationMenuController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIProductionMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIProductionMenuController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Views/UIInformationMenuView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Views/UIInformationMenuView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Views/UIProductionMenuView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Views/UIProductionMenuView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Units.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Units/Unit.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Units/Unit.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Units/UnitBlueprint.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Units/UnitBlueprint.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Units/UnitProductionData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Units/UnitProductionData.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,8 +97,11 @@
     <setting file="mock://C:/Users/Zexanein/Unity/Projects/sami-vartokgoz-panteon-case/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/BuildingSystemLayer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://C:/Users/Zexanein/Unity/Projects/sami-vartokgoz-panteon-case/Assets/Scripts/BuildingPlacementSystem/TilemapLayers/BuildingSystemLayer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Extensions/TransformExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Extensions/UIExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlacementSystem/PlacementManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIControllerBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Decorators/UIUnitSelectButtonDecorator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Units/UnitProductionData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Views/UIViewBase.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{

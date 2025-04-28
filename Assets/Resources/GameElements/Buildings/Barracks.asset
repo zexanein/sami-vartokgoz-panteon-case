@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0044254e7439f140bd244ca07922bf3, type: 3}
   m_Name: Barracks
   m_EditorClassIdentifier: 
-  buildingName: Barracks
-  buildingDescription: This building can produce soldiers with different levels.
+  elementName: Barracks
+  elementDescription: Barracks Placeholder Description
   displaySprite: {fileID: 21300000, guid: d50ae648297e0d046b9af9654394c3d2, type: 3}
   uiIcon: {fileID: 21300000, guid: d50ae648297e0d046b9af9654394c3d2, type: 3}
-  buildingPrefab: {fileID: 3341510373223361195, guid: d015c64fe9ded3f4694f10e12ccbc923, type: 3}
+  elementPrefab: {fileID: 3341510373223361195, guid: d015c64fe9ded3f4694f10e12ccbc923, type: 3}
   healthPoints: 100
-  placementOffset: {x: 0, y: 0}
   dimensions: {x: 4, y: 4}
+  placementOffset: {x: 0, y: 0}
   productionData: {fileID: 11400000, guid: 8afb21e07118f894cbd978327ac1a8bb, type: 2}
   unitSpawnPointCoordinates: {x: 0, y: -3}

@@ -1,33 +1,30 @@
-using BuildingPlacementSystem;
+using PlacementSystem;
 using UI.Controllers;
 using UI.Decorators;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace UI.Views
 {
     /// <summary>
     /// This class handles visuals of Production Menu
     /// </summary>
-    public class UIProductionMenuView : MonoBehaviour
+    public class UIProductionMenuView : UIViewBase
     {
-        private UIProductionMenuController _controller;
-        
         [Header("References")]
         public UIButtonDecorator buildingButtonDecorator;
         public Transform buildingButtonsContainer;
 
-        public void SetController(UIProductionMenuController controller) => _controller = controller;
+        private UIProductionMenuController ProductionMenuController => Controller as UIProductionMenuController;
 
         private void Start() => SpawnBuildingButtons();
 
         private void SpawnBuildingButtons()
         {
-            foreach (var building in BuildingPlacementManager.Instance.buildingBlueprints)
+            foreach (var building in PlacementManager.Instance.blueprints)
             {
                 var spawnedDecorator = Instantiate(buildingButtonDecorator, buildingButtonsContainer);
-                spawnedDecorator.UpdateVisuals(building.buildingName, building.uiIcon);
-                spawnedDecorator.UpdateOnClickEvent(() => _controller.OnBuildingButtonClicked(building));
+                spawnedDecorator.UpdateVisuals(building.elementName, building.uiIcon);
+                spawnedDecorator.UpdateOnClickEvent(() => ProductionMenuController.OnBuildingButtonClicked(building));
             }
         }
     }

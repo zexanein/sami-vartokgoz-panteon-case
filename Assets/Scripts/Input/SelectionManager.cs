@@ -1,6 +1,6 @@
-using BuildingPlacementSystem;
 using Buildings;
-using UI.Controllers;
+using GameElements;
+using PlacementSystem;
 using Units;
 using UnityEngine;
 
@@ -19,11 +19,8 @@ public class SelectionManager : MonoBehaviour
     }
     #endregion
     
-    public delegate void OnBuildingSelectedHandler(Building building);
-    public OnBuildingSelectedHandler OnBuildingSelected;
-    
-    public delegate void OnUnitSelectedHandler(Unit unit);
-    public OnUnitSelectedHandler OnUnitSelected;
+    public delegate void OnElementSelectedHandler(GameElement element);
+    public OnElementSelectedHandler OnElementSelected;
     
     public delegate void OnNothingSelectedHandler();
     public OnNothingSelectedHandler OnNothingSelected;
@@ -32,13 +29,12 @@ public class SelectionManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (BuildingPlacementManager.Instance.InBuildMode) return;
+            if (PlacementManager.Instance.InPlacementMode) return;
             if (InputManager.PointerOverUI) return;
             var hit = Physics2D.Raycast(InputManager.MouseWorldPosition, Vector2.zero);
             
             if (hit.collider == null) OnNothingSelected?.Invoke();
-            else if (hit.collider.TryGetComponent(out Building building)) OnBuildingSelected?.Invoke(building);
-            else if (hit.collider.TryGetComponent(out Unit unit)) OnUnitSelected?.Invoke(unit); 
+            else if (hit.collider.TryGetComponent(out GameElement element)) OnElementSelected?.Invoke(element);
         }
     }
 }

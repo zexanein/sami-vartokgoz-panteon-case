@@ -1,66 +1,67 @@
-using System;
-using BuildingPlacementSystem;
+using Blueprints;
 using Buildings;
+using GameElements;
+using PlacementSystem;
 using UI.Views;
 using Units;
 using UnityEngine;
 
 namespace UI.Controllers
 {
-    public class UIInformationMenuController : MonoBehaviour
+    public class UIInformationMenuController : UIControllerBase
     {
-        public UIInformationMenuView view;
-        private Building _selectedBuilding;
-
-        private void Awake() => view.SetController(this);
+        private UIInformationMenuView InformationMenuView => view as UIInformationMenuView;
+        private GameElement _currentlyDisplayingElement;
 
         private void OnEnable()
         {
-            SelectionManager.Instance.OnBuildingSelected += OnBuildingSelected;
+            PlacementManager.Instance.OnElementPlaced += OnElementPlaced;
+            SelectionManager.Instance.OnElementSelected += OnElementSelected;
             SelectionManager.Instance.OnNothingSelected += OnNothingSelected;
-            SelectionManager.Instance.OnUnitSelected += OnUnitSelected;
         }
 
         private void OnDisable()
         {
-            SelectionManager.Instance.OnBuildingSelected -= OnBuildingSelected;
-            SelectionManager.Instance.OnNothingSelected -= OnNothingSelected;
-            SelectionManager.Instance.OnUnitSelected -= OnUnitSelected;
+            if (SelectionManager.Instance != null)
+            {
+                SelectionManager.Instance.OnElementSelected -= OnElementSelected;
+                SelectionManager.Instance.OnNothingSelected -= OnNothingSelected;   
+            }
+
+            if (PlacementManager.Instance != null)
+            {
+                PlacementManager.Instance.OnElementPlaced -= OnElementPlaced;
+            }
         }
 
-        public void DemolishBuilding(Building building)
+        public void DestroyElement(GameElement element)
         {
-            BuildingPlacementManager.Instance.buildingSystemLayer.Destroy((Vector2Int) building.Coordinates);
-            view.HideInformation();
+            PlacementManager.Instance.DestroyElementFrom(element.Coordinates);
+            InformationMenuView.HideInformation();
         }
 
-        public void OnProduceUnitButtonClicked(UnitBlueprint unit)
+        public void ProduceUnit(UnitSpawnerBuilding unitSpawnerBuilding, UnitBlueprint unit)
         {
-            if (_selectedBuilding is not UnitSpawnerBuilding unitSpawnerBuilding) return;
             unitSpawnerBuilding.SpawnUnit(unit);
-            view.HideInformation();
+            InformationMenuView.HideInformation();
         }
 
-        public bool IsUnitSpawnPointValid(Building building)
+        private void OnElementPlaced()
         {
-            return building is not UnitSpawnerBuilding unitSpawnerBuilding || unitSpawnerBuilding.IsSpawnPointValid();
+            if (_currentlyDisplayingElement == null) return;
+            InformationMenuView.DisplayElementInformation(_currentlyDisplayingElement);
         }
 
-        private void OnBuildingSelected(Building building)
+        private void OnElementSelected(GameElement element)
         {
-            _selectedBuilding = building;
-            view.DisplayInformation(building);
-        }
-
-        private void OnUnitSelected(Unit unit)
-        {
-            
+            _currentlyDisplayingElement = element;
+            InformationMenuView.DisplayElementInformation(element);
         }
 
         private void OnNothingSelected()
         {
-            _selectedBuilding = null;
-            view.HideInformation();
+            _currentlyDisplayingElement = null;
+            InformationMenuView.HideInformation();
         }
     }
 }

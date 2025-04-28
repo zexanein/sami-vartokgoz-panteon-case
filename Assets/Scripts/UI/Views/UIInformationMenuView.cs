@@ -1,92 +1,102 @@
 using Buildings;
 using Extensions;
+using GameElements;
 using TMPro;
 using UI.Controllers;
 using UI.Decorators;
+using Units;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.Views
 {
-    public class UIInformationMenuView : MonoBehaviour
+    public class UIInformationMenuView : UIViewBase
     {
-        private UIInformationMenuController _controller;
-    
         [Header("General Info")]
         [SerializeField] private GameObject menuContent;
         [SerializeField] private TMP_Text labelText;
         [SerializeField] private TMP_Text descriptionText;
         [SerializeField] private Image iconImage;
     
-        [Header("Destroy Button")]
-        [SerializeField] private TMP_Text destroyButtonText;
-        [SerializeField] private Button destroyButton;
-    
         [Header("Unit Production")]
         [SerializeField] private GameObject unitProductionPanel;
         [SerializeField] private GameObject unitButtonContainer;
         [SerializeField] private TMP_Text unitSpawnPointBlockedWarningText;
         [SerializeField] private UIButtonDecorator unitButtonDecorator;
+    
+        [Header("Destroy Button")]
+        [SerializeField] private TMP_Text destroyButtonText;
+        [SerializeField] private Button destroyButton;
 
-        public void SetController(UIInformationMenuController controller) => _controller = controller;
-        
-        public void DisplayInformation(Building building)
+        private UIInformationMenuController InformationMenuController => Controller as UIInformationMenuController;
+
+        private void SetGeneralInformation(GameElement gameElement)
         {
+            labelText.text = gameElement.Blueprint.elementName;
+            descriptionText.text = gameElement.Blueprint.elementDescription;
+            iconImage.sprite = gameElement.Blueprint.uiIcon;
+        }
+        
+        public void DisplayElementInformation(GameElement gameElement)
+        {
+            ResetInformation();
             menuContent.SetActive(true);
-            
-            // General information
-            labelText.text = building.Blueprint.buildingName;
-            descriptionText.text = building.Blueprint.buildingDescription;
-            iconImage.sprite = building.Blueprint.displaySprite;
-            
-            // Unit production
-            if (building is UnitSpawnerBuilding unitSpawnerBuilding)
+            SetGeneralInformation(gameElement);
+
+            switch (gameElement)
             {
-                unitProductionPanel.SetActive(true);
-                UpdateUnitProductionVisuals(unitSpawnerBuilding);
+                case Building building: DisplayBuildingInformation(building); break;
+                case Unit unit: DisplayUnitInformation(unit); break;
             }
             
-            else unitProductionPanel.SetActive(false);
+            destroyButton.ReplaceButtonClickEvent(() => InformationMenuController.DestroyElement(gameElement));
+        }
+
+        private void DisplayBuildingInformation(Building building)
+        {
+            destroyButtonText.text = "Destruct";
             
-            // Destroy button
-            destroyButtonText.text = "Demolish";
-            UpdateDemolishKillEvent(() => _controller.DemolishBuilding(building));
+            var unitSpawnerBuilding = building as UnitSpawnerBuilding;
+            var hasProduction = unitSpawnerBuilding != null && unitSpawnerBuilding.BuildingBlueprint.productionData != null;
+            unitProductionPanel.SetActive(hasProduction);
+            if (hasProduction) UpdateUnitProductionVisuals(unitSpawnerBuilding);
+        }
+
+        private void DisplayUnitInformation(Unit unit)
+        {
+            destroyButtonText.text = "Kill";
         }
         
         public void HideInformation()
         {
+            ResetInformation();
+            menuContent.SetActive(false);
+        }
+
+        private void ResetInformation()
+        {
             labelText.text = string.Empty;
             descriptionText.text = string.Empty;
-            iconImage.sprite = null;
-            menuContent.SetActive(false);
+            iconImage.sprite = null;   
             unitProductionPanel.SetActive(false);
-        } 
-
-        private void UpdateDemolishKillEvent(UnityAction onClickAction)
-        {
-            destroyButton.onClick.RemoveAllListeners();
-            destroyButton.onClick.AddListener(onClickAction);
         }
 
         private void UpdateUnitProductionVisuals(UnitSpawnerBuilding unitSpawnerBuilding)
         {
             // Clear previous buttons
             unitButtonContainer.transform.ClearChildren();
-        
-            if (unitSpawnerBuilding.Blueprint.productionData == null) return;
 
-            var isSpawnPointValid = unitSpawnerBuilding.IsSpawnPointValid();
-            unitSpawnPointBlockedWarningText.gameObject.SetActive(!isSpawnPointValid);
+            var isSpawnPointEmpty = unitSpawnerBuilding.IsSpawnPointEmpty();
+            unitSpawnPointBlockedWarningText.gameObject.SetActive(!isSpawnPointEmpty);
             
             // Create new buttons
-            foreach (var unit in unitSpawnerBuilding.Blueprint.productionData.unitBlueprints)
+            foreach (var unitBlueprint in unitSpawnerBuilding.BuildingBlueprint.productionData.unitBlueprints)
             {
                 var spawnedDecorator = Instantiate(unitButtonDecorator, unitButtonContainer.transform);
-                spawnedDecorator.UpdateVisuals(unit.unitName, unit.uiIcon);
-                spawnedDecorator.UpdateOnClickEvent(() => _controller.OnProduceUnitButtonClicked(unit));
-                spawnedDecorator.SetInteractable(isSpawnPointValid);
+                spawnedDecorator.UpdateVisuals(unitBlueprint.elementName, unitBlueprint.uiIcon);
+                spawnedDecorator.UpdateOnClickEvent(() => InformationMenuController.ProduceUnit(unitSpawnerBuilding, unitBlueprint));
+                spawnedDecorator.SetInteractable(isSpawnPointEmpty);
             }
         }
     }

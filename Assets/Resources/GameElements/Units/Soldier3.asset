@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d257c4e48466024a8877de35a8d4789, type: 3}
   m_Name: Soldier3
   m_EditorClassIdentifier: 
-  unitName: Soldier 3
-  healthPoints: 100
-  damagePoints: 100
+  elementName: Soldier3
+  elementDescription: 
   displaySprite: {fileID: 21300000, guid: de4dc9c0825219547aef9a2abdb41608, type: 3}
   uiIcon: {fileID: 21300000, guid: 47b6f3dc9dfca7847a9b1f49eaa9c7cc, type: 3}
-  unitPrefab: {fileID: 2766508719166901459, guid: 0413217e22140494ba3d67c714f84f44, type: 3}
+  elementPrefab: {fileID: 2766508719166901459, guid: 0413217e22140494ba3d67c714f84f44, type: 3}
+  healthPoints: 100
+  dimensions: {x: 1, y: 1}
