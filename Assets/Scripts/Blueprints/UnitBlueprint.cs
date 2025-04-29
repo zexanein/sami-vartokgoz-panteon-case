@@ -7,5 +7,6 @@ namespace Blueprints
     {
         [Header("Unit Settings")]
         public int damagePoints;
+        public float movementSpeed;
     }
 }

@@ -7,7 +7,8 @@ namespace GameElements
     {
         public int Damage { get; private set; }
         public UnitBlueprint UnitBlueprint => Blueprint as UnitBlueprint;
-        
+        public UnitPathFollower PathFollower { get; set; }
+
         protected override void OnInitialize()
         {
             Damage = UnitBlueprint.damagePoints;
@@ -23,9 +24,9 @@ namespace GameElements
             SpriteRenderer.color = Color.white;
         }
 
-        public void MoveToPosition(Vector3 position)
+        public override void SecondaryMouseInteraction(Vector3 mousePosition, GameElement otherElement)
         {
-            
+            UnitMovementManager.Instance.RegisterUnitMovement(this, mousePosition);
         }
     }
 }

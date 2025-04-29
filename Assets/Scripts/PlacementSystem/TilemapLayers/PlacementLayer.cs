@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Blueprints;
 using Extensions;
@@ -12,13 +13,15 @@ namespace PlacementSystem.TilemapLayers
     public class PlacementLayer : TilemapLayer
     {
         private Dictionary<Vector2Int, GameElement> _gameElements = new();
-        [SerializeField] private CollisionLayer collisionLayer;
         
-        public bool PlaceElement(Vector2 worldCoordinates, GameElementBlueprint elementBlueprint)
+        public delegate void OnTileStateChangedEvent(Vector2Int coordinates, bool state);
+        public event OnTileStateChangedEvent OnTileStateChanged;
+        
+        public GameElement PlaceElement(Vector2 worldCoordinates, GameElementBlueprint elementBlueprint)
         {
-            if (elementBlueprint == null || elementBlueprint.elementPrefab == null) return false;
-            
-            var coordinates = Tilemap.WorldToCell(worldCoordinates);
+            if (elementBlueprint == null || elementBlueprint.elementPrefab == null) return null;
+
+            var coordinates = TilemapReference.WorldToCell(worldCoordinates);
             
             //  Instantiate element prefab
             var elementGameObject = Instantiate(
@@ -30,51 +33,61 @@ namespace PlacementSystem.TilemapLayers
             if (!elementGameObject.TryGetComponent(out GameElement gameElement))
                 gameElement = elementGameObject.AddComponent<GameElement>();
             
-            gameElement.Initialize(elementBlueprint, coordinates, Tilemap);
-            
-            collisionLayer.SetCollisions(gameElement, true);
-            RegisterElementArea(gameElement);
-            
-            return true;
+            gameElement.Initialize(elementBlueprint, coordinates, TilemapReference);
+            RegisterArea((Vector2Int) gameElement.Coordinates, gameElement.Blueprint.dimensions, gameElement);
+
+            gameElement.OnCoordinatesChanged += OnElementCoordinatesChanged;
+            return gameElement;
+        }
+
+        private void OnElementCoordinatesChanged(GameElement element, Vector2Int oldCoordinates, Vector2Int newCoordinates)
+        {
+            UnregisterArea(oldCoordinates, element.Blueprint.dimensions);
+            RegisterArea(newCoordinates, element.Blueprint.dimensions, element);   
         }
 
         public void Destroy(Vector2 worldCoordinates)
         {
-            var coordinates = (Vector2Int) Tilemap.WorldToCell(worldCoordinates);
+            var coordinates = (Vector2Int) TilemapReference.WorldToCell(worldCoordinates);
             if (!_gameElements.TryGetValue(coordinates, out var gameElement)) return;
             
-            collisionLayer.SetCollisions(gameElement, false);
-            UnregisterElementArea(gameElement);
+            gameElement.OnCoordinatesChanged -= OnElementCoordinatesChanged;
+            UnregisterArea((Vector2Int) gameElement.Coordinates, gameElement.Blueprint.dimensions);
             
             _gameElements.Remove(coordinates);
-            gameElement.Destroy();
+            Destroy(gameElement.gameObject);
         }
 
         public bool AreCoordinatesEmpty(Vector2 worldCoordinates, Vector2Int dimensions)
         {
-            var coordinates = (Vector2Int) Tilemap.WorldToCell(worldCoordinates);
+            var coordinates = (Vector2Int) TilemapReference.WorldToCell(worldCoordinates);
             return !IsAreaOccupied(coordinates, dimensions);
         }
 
-        private void RegisterElementArea(GameElement gameElement)
+        public void RegisterElement(GameElement gameElement) => RegisterArea((Vector2Int) gameElement.Coordinates, gameElement.Blueprint.dimensions, gameElement); 
+
+        public void RegisterArea(Vector2Int coordinates, Vector2Int dimensions, GameElement gameElement)
         {
-            gameElement.IterateOccupiedTiles(tileCoordinates =>
+            dimensions.Iterate(coordinates, tileCoordinates =>
             {
-                _gameElements.Add(tileCoordinates, gameElement);
+                _gameElements.TryAdd(tileCoordinates, gameElement);
+                OnTileStateChanged?.Invoke(tileCoordinates, true);
             });
         }
 
-        private void UnregisterElementArea(GameElement gameElement)
+        public void UnregisterArea(Vector2Int coordinates, Vector2Int dimensions)
         {
-            gameElement.IterateOccupiedTiles(tileCoordinates =>
+            dimensions.Iterate(coordinates, tileCoordinates =>
             {
                 _gameElements.Remove(tileCoordinates);
+                OnTileStateChanged?.Invoke(tileCoordinates, false);
             });
         }
 
-        private bool IsAreaOccupied(Vector2Int coordinates, Vector2Int dimensions)
+        public bool IsAreaOccupied(Vector2 worldCoordinates, Vector2Int dimensions)
         {
-            return dimensions.Iterate(coordinates - dimensions / 2, tileCoordinates => collisionLayer.HasCollisionTile(tileCoordinates));
+            var coordinates = (Vector2Int) TilemapReference.WorldToCell(worldCoordinates);
+            return dimensions.Iterate(coordinates, tileCoordinates => _gameElements.ContainsKey(tileCoordinates));
         }
     }
 }

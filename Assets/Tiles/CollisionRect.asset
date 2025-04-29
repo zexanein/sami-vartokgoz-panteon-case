@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: CollisionRect
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 7482667652216324306, guid: 06bb454129beecd43bbdef7707a71938, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -926760251, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
     e01: 0

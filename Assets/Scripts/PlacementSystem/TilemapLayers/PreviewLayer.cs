@@ -12,7 +12,7 @@ namespace PlacementSystem.TilemapLayers
 
         public void ShowPreview(GameElementBlueprint elementBlueprint, Vector3 worldCoordinates, bool isValid)
         {
-            var coordinates = Tilemap.WorldToCell(worldCoordinates);
+            var coordinates = TilemapReference.WorldToCell(worldCoordinates);
             previewRenderer.enabled = true;
             
             // Move Preview Renderer

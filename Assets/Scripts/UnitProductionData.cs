@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Units/Production Data", fileName = "UnitProductionData")]
 public class UnitProductionData : ScriptableObject
 {
-    public List<UnitBlueprint> unitBlueprints = new();
+    public List<UnitBlueprint> blueprints = new();
 }

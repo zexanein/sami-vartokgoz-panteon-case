@@ -1,6 +1,5 @@
 using Blueprints;
 using PlacementSystem;
-using PlacementSystem.TilemapLayers;
 using UnityEngine;
 
 namespace GameElements
@@ -8,7 +7,6 @@ namespace GameElements
     public class UnitSpawnerBuilding : Building
     {
         public Transform unitSpawnPoint;
-        public CollisionLayer collisionLayer;
 
         protected override void OnInitialize()
         {

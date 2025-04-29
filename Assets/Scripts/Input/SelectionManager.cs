@@ -1,6 +1,5 @@
-using System;
-using Buildings;
 using GameElements;
+using JetBrains.Annotations;
 using PlacementSystem;
 using UnityEngine;
 
@@ -24,18 +23,18 @@ public class SelectionManager : MonoBehaviour
     
     public delegate void OnNothingSelectedHandler();
     public OnNothingSelectedHandler OnNothingSelected;
-    
-    public GameElement SelectedElement { get; private set; }
-    public GameElement LastSelectedElement { get; private set; }
+
+    private GameElement SelectedElement { get; set; }
+    private GameElement LastSelectedElement { get; set; }
 
     private void OnEnable()
     {
-        PlacementManager.Instance.OnEnterPlacementMode += NothingSelected;
+        PlacementManager.Instance.OnPlaceModeChanged += OnPlaceModeChanged;
     }
 
     private void OnDisable()
     {
-        PlacementManager.Instance.OnEnterPlacementMode -= NothingSelected;
+        PlacementManager.Instance.OnPlaceModeChanged -= OnPlaceModeChanged;
     }
 
     private void Update()
@@ -50,10 +49,21 @@ public class SelectionManager : MonoBehaviour
             else if (hit.collider.TryGetComponent(out GameElement element)) ElementSelected(element);
         }
 
-        if (Input.GetMouseButtonDown(1) && SelectedElement is Unit selectedUnit)
+        if (Input.GetMouseButtonDown(1) && SelectedElement != null)
         {
-            selectedUnit.MoveToPosition(InputManager.MouseWorldPosition);
+            if (PlacementManager.Instance.InPlacementMode) return;
+            if (InputManager.PointerOverUI) return;
+            var hit = Physics2D.Raycast(InputManager.MouseWorldPosition, Vector2.zero);
+            
+            GameElement otherElement = null;
+            if (hit.collider != null) hit.collider.TryGetComponent(out otherElement);
+            SelectedElement.SecondaryMouseInteraction(InputManager.MouseWorldPosition, otherElement);
         }
+    }
+
+    private void OnPlaceModeChanged(bool state)
+    {
+        if (!state) NothingSelected();
     }
     
     private void ElementSelected(GameElement element)

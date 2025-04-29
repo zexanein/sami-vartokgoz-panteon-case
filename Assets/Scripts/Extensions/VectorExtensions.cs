@@ -58,6 +58,8 @@ namespace Extensions
 
         public static void Iterate(this Vector2Int dimensions, Vector2Int coordinates, Vector2IntAction action)
         {
+            coordinates -= dimensions / 2;
+            
             for (var x = 0; x < dimensions.x; x++)
             for (var y = 0; y < dimensions.y; y++)
             {
@@ -67,6 +69,8 @@ namespace Extensions
 
         public static bool Iterate(this Vector2Int dimensions, Vector2Int coordinates, Vector2IntActionBool action)
         {
+            coordinates -= dimensions / 2;
+            
             for (var x = 0; x < dimensions.x; x++)
             for (var y = 0; y < dimensions.y; y++)
             {

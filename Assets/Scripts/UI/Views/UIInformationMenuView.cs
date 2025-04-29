@@ -1,4 +1,3 @@
-using Buildings;
 using Extensions;
 using GameElements;
 using TMPro;
@@ -107,7 +106,7 @@ namespace UI.Views
             unitSpawnPointBlockedWarningText.gameObject.SetActive(!isSpawnPointEmpty);
             
             // Create new buttons
-            foreach (var unitBlueprint in unitSpawnerBuilding.BuildingBlueprint.productionData.unitBlueprints)
+            foreach (var unitBlueprint in unitSpawnerBuilding.BuildingBlueprint.productionData.blueprints)
             {
                 var spawnedDecorator = Instantiate(unitButtonDecorator, unitButtonContainer.transform);
                 spawnedDecorator.UpdateVisuals(unitBlueprint.elementName, unitBlueprint.uiIcon);

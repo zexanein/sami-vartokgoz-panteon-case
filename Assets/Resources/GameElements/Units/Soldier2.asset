@@ -17,7 +17,8 @@ MonoBehaviour:
   displaySprite: {fileID: -1330071069, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   uiIcon: {fileID: -1330071069, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   elementPrefab: {fileID: 65587457270177641, guid: e692b9102e4e1e64dbfb331c1ccb531b, type: 3}
-  healthPoints: 120
+  healthPoints: 10
   dimensions: {x: 1, y: 1}
   placementOffset: {x: 0, y: 0}
-  damagePoints: 60
+  damagePoints: 5
+  movementSpeed: 3

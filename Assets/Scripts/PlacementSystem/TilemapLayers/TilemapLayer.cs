@@ -1,5 +1,4 @@
 using Blueprints;
-using Buildings;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -8,12 +7,9 @@ namespace PlacementSystem.TilemapLayers
     [RequireComponent(typeof(Tilemap))]
     public class TilemapLayer : MonoBehaviour
     {
-        protected Tilemap Tilemap { get; private set; }
+        protected Tilemap TilemapReference { get; private set; }
 
-        protected void Awake()
-        {
-            Tilemap = GetComponent<Tilemap>();
-        }
+        protected void Awake() => TilemapReference = GetComponent<Tilemap>();
 
         protected Vector3 GetPositionForElement(Vector3Int coordinates, GameElementBlueprint elementBlueprint)
         {
@@ -28,8 +24,8 @@ namespace PlacementSystem.TilemapLayers
         private Vector3 GetPositionForBuilding(Vector3Int coordinates, BuildingBlueprint buildingBlueprint)
         {
             return
-                Tilemap.CellToWorld(coordinates) +
-                Tilemap.cellSize / 2 +
+                TilemapReference.CellToWorld(coordinates) +
+                TilemapReference.cellSize / 2 +
                 (Vector3) buildingBlueprint.CenterOffset +
                 (Vector3Int) buildingBlueprint.placementOffset;
         }
@@ -37,8 +33,8 @@ namespace PlacementSystem.TilemapLayers
         private Vector3 GetPositionForUnit(Vector3Int coordinates, UnitBlueprint unitBlueprint)
         {
             return
-                Tilemap.CellToWorld(coordinates) +
-                Tilemap.cellSize / 2;
+                TilemapReference.CellToWorld(coordinates) +
+                TilemapReference.cellSize / 2;
         }
     }
 }

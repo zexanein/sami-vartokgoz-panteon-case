@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d13794fc6673aa4b9c816bc4b53cba3, type: 3}
   m_Name: BarracksProductionData
   m_EditorClassIdentifier: 
-  unitBlueprints:
+  blueprints:
   - {fileID: 11400000, guid: 4b95c79a81d80d34f84dc2c840f44b9c, type: 2}
   - {fileID: 11400000, guid: 8bded77e941e5964bb111603f9fc0426, type: 2}
   - {fileID: 11400000, guid: 9e96a4a752d1063478dd32f120a8b02f, type: 2}

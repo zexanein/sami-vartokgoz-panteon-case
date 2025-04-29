@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Blueprints;
+using GameElements;
 using PlacementSystem.TilemapLayers;
 using UnityEngine;
 
@@ -12,7 +14,6 @@ namespace PlacementSystem
     {
         #region Singleton
         private static PlacementManager _instance;
-
         public static PlacementManager Instance
         {
             get
@@ -33,14 +34,18 @@ namespace PlacementSystem
         
         public bool InPlacementMode { get; private set; }
         
-        public delegate void OnElementPlacedHandler();
-        public OnElementPlacedHandler OnElementPlaced;
+        public delegate void OnElementBuiltEvent(GameElement element);
+        public event OnElementBuiltEvent OnElementBuilt;
         
-        public delegate void OnEnterPlacementModeHandler();
-        public OnEnterPlacementModeHandler OnEnterPlacementMode;
+        public delegate void OnPlaceModeChangedEvent(bool state);
+        public event OnPlaceModeChangedEvent OnPlaceModeChanged;
         
-        public delegate void OnExitPlacementModeHandler();
-        public OnExitPlacementModeHandler OnExitPlacementMode;
+        public event PlacementLayer.OnTileStateChangedEvent OnTileStateChanged;
+
+        private void OnEnable() => placementLayer.OnTileStateChanged += OnTileStateChanged;
+        private void OnDisable() => placementLayer.OnTileStateChanged -= OnTileStateChanged;
+
+        public bool IsAreaOccupied(Vector2 worldCoordinates, Vector2Int dimensions) => placementLayer.IsAreaOccupied(worldCoordinates, dimensions);
         
         private void Update()
         {
@@ -61,9 +66,11 @@ namespace PlacementSystem
             var mouseWorldPosition = InputManager.MouseWorldPosition - _selectedBlueprint.CenterOffset;
             var coordinatesValid = AreCoordinatesEmpty(mouseWorldPosition);
             HandlePreview(mouseWorldPosition, coordinatesValid);
+                
             if (Input.GetMouseButtonDown(0) && coordinatesValid && !InputManager.PointerOverUI)
             {
-                Place(mouseWorldPosition, _selectedBlueprint);
+                var builtElement = Place(mouseWorldPosition, _selectedBlueprint);
+                OnElementBuilt?.Invoke(builtElement);
             }
         }
 
@@ -86,9 +93,9 @@ namespace PlacementSystem
             );
         }
 
-        public void Place(Vector3 mouseWorldPosition, GameElementBlueprint elementBlueprint)
+        public GameElement Place(Vector3 mouseWorldPosition, GameElementBlueprint elementBlueprint)
         {
-            if (placementLayer.PlaceElement(mouseWorldPosition, elementBlueprint)) OnElementPlaced?.Invoke();
+            return placementLayer.PlaceElement(mouseWorldPosition, elementBlueprint);
         }
         
         public void SelectElementData(GameElementBlueprint elementBlueprint)
@@ -100,7 +107,7 @@ namespace PlacementSystem
         {
             if (InPlacementMode) return;
             InPlacementMode = true;
-            OnEnterPlacementMode?.Invoke();
+            OnPlaceModeChanged?.Invoke(true);
         }
 
         public void ExitPlacementMode()
@@ -108,7 +115,7 @@ namespace PlacementSystem
             if (!InPlacementMode) return;
             _selectedBlueprint = null;
             InPlacementMode = false;
-            OnExitPlacementMode?.Invoke();
+            OnPlaceModeChanged?.Invoke(false);
         }
     }
 }

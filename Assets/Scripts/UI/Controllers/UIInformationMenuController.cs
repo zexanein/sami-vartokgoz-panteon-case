@@ -1,5 +1,4 @@
 using Blueprints;
-using Buildings;
 using GameElements;
 using PlacementSystem;
 using UI.Views;
@@ -14,7 +13,7 @@ namespace UI.Controllers
 
         private void OnEnable()
         {
-            PlacementManager.Instance.OnElementPlaced += OnElementPlaced;
+            PlacementManager.Instance.OnElementBuilt += OnElementBuilt;
             SelectionManager.Instance.OnElementSelected += OnElementSelected;
             SelectionManager.Instance.OnNothingSelected += OnNothingSelected;
         }
@@ -29,7 +28,7 @@ namespace UI.Controllers
 
             if (PlacementManager.Instance != null)
             {
-                PlacementManager.Instance.OnElementPlaced -= OnElementPlaced;
+                PlacementManager.Instance.OnElementBuilt -= OnElementBuilt;
             }
         }
 
@@ -45,10 +44,9 @@ namespace UI.Controllers
             InformationMenuView.DisplayElementInformation(_currentlyDisplayingElement);
         }
 
-        private void OnElementPlaced()
+        private void OnElementBuilt(GameElement element)
         {
-            if (_currentlyDisplayingElement == null) return;
-            InformationMenuView.DisplayElementInformation(_currentlyDisplayingElement);
+            InformationMenuView.DisplayElementInformation(element);
         }
 
         private void OnElementSelected(GameElement element)
