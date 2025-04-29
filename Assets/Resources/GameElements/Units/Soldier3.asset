@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: Soldier3
   elementDescription: A Yellow Soldier
-  displaySprite: {fileID: 21300000, guid: de4dc9c0825219547aef9a2abdb41608, type: 3}
-  uiIcon: {fileID: 21300000, guid: 47b6f3dc9dfca7847a9b1f49eaa9c7cc, type: 3}
+  displaySprite: {fileID: 1675785676, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
+  uiIcon: {fileID: 1675785676, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   elementPrefab: {fileID: 2766508719166901459, guid: 0413217e22140494ba3d67c714f84f44, type: 3}
   healthPoints: 140
   dimensions: {x: 1, y: 1}

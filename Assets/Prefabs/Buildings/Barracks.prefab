@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 18c5a436e5616e34598f67c229511f78, type: 3}
+  m_Sprite: {fileID: 871947013, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ PrefabInstance:
     - target: {fileID: 1244735067384758188, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d50ae648297e0d046b9af9654394c3d2, type: 3}
+      objectReference: {fileID: 358981288, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
     - target: {fileID: 1244735067384758188, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -180,3 +180,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitSpawnPoint: {fileID: 863939407813930260}
+  collisionLayer: {fileID: 0}

@@ -6,14 +6,49 @@
   <component name="ChangeListManager">
     <list default="true" id="dea19160-e68f-46e0-bda7-bd596ae7a62e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.sami-vartokgoz-panteon-case/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.sami-vartokgoz-panteon-case/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Barracks.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Barracks.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/PowerPlant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/PowerPlant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/UIBuildingSelectButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/UIBuildingSelectButton.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameElements/Buildings/Barracks.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameElements/Buildings/Barracks.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameElements/Buildings/PowerPlant.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameElements/Buildings/PowerPlant.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier2.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier3.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevelopmentScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DevelopmentScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameElements/GameElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameElements/GameElement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameElements/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameElements/Unit.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameElements/UnitSpawnerBuilding.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameElements/UnitSpawnerBuilding.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/SelectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/SelectionManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/PlacementManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/PlacementManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/PlacementLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/PlacementLayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIInformationMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIInformationMenuController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/UniversalRP.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/UniversalRP.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Barracks.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Barracks.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/DP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/DP.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/EmptyUnit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/EmptyUnit.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Flag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Flag.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/HP.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/HP.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/NoneBuilding.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/NoneBuilding.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/PlaceholderSoldier.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/PlaceholderSoldier.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/PowerPlant.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/PowerPlant.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/RoundedSquare.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/RoundedSquare.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Soldier.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Soldier.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Soldier2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Soldier2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Soldier3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Soldier3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Square.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Square.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/TileBorder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/TileBorder.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tiles/TileBorder.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/TileBorder.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

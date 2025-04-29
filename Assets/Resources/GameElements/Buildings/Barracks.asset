@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: Barracks
   elementDescription: Barracks Placeholder Description
-  displaySprite: {fileID: 21300000, guid: d50ae648297e0d046b9af9654394c3d2, type: 3}
-  uiIcon: {fileID: 21300000, guid: d50ae648297e0d046b9af9654394c3d2, type: 3}
+  displaySprite: {fileID: 358981288, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
+  uiIcon: {fileID: 358981288, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   elementPrefab: {fileID: 3341510373223361195, guid: d015c64fe9ded3f4694f10e12ccbc923, type: 3}
   healthPoints: 100
   dimensions: {x: 4, y: 4}

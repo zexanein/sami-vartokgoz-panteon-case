@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   elementName: Soldier2
   elementDescription: A Blue Soldier
-  displaySprite: {fileID: 21300000, guid: de4dc9c0825219547aef9a2abdb41608, type: 3}
-  uiIcon: {fileID: 21300000, guid: bb2d3b8051fa16b4fad50837749e6142, type: 3}
+  displaySprite: {fileID: -1330071069, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
+  uiIcon: {fileID: -1330071069, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   elementPrefab: {fileID: 65587457270177641, guid: e692b9102e4e1e64dbfb331c1ccb531b, type: 3}
   healthPoints: 120
   dimensions: {x: 1, y: 1}
