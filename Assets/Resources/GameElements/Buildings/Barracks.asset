@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Barracks
   m_EditorClassIdentifier: 
   elementName: Barracks
-  elementDescription: Barracks Placeholder Description
+  elementDescription: Produces units for your faction
   displaySprite: {fileID: 358981288, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   uiIcon: {fileID: 358981288, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   elementPrefab: {fileID: 3341510373223361195, guid: d015c64fe9ded3f4694f10e12ccbc923, type: 3}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: TileBorder
+  m_Name: GroundTile
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -926760251, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

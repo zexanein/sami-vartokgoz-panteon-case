@@ -40,13 +40,12 @@ namespace PlacementSystem
         public delegate void OnPlaceModeChangedEvent(bool state);
         public event OnPlaceModeChangedEvent OnPlaceModeChanged;
         
+        
         public event PlacementLayer.OnTileStateChangedEvent OnTileStateChanged;
 
         private void OnEnable() => placementLayer.OnTileStateChanged += OnTileStateChanged;
         private void OnDisable() => placementLayer.OnTileStateChanged -= OnTileStateChanged;
 
-        public bool IsAreaOccupied(Vector2 worldCoordinates, Vector2Int dimensions) => placementLayer.IsAreaOccupied(worldCoordinates, dimensions);
-        
         private void Update()
         {
             if (!InPlacementMode || placementLayer == null)
@@ -73,8 +72,6 @@ namespace PlacementSystem
                 OnElementBuilt?.Invoke(builtElement);
             }
         }
-
-        public void DestroyElementFrom(Vector3 worldCoordinates) => placementLayer.Destroy(worldCoordinates);
 
         private bool AreCoordinatesEmpty(Vector3 mouseWorldPosition)
         {

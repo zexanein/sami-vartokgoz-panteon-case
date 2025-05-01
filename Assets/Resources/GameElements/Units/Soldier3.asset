@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Soldier3
   m_EditorClassIdentifier: 
   elementName: Soldier3
-  elementDescription: A Yellow Soldier
+  elementDescription: Soldier for Snow
   displaySprite: {fileID: 1675785676, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   uiIcon: {fileID: 1675785676, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
-  elementPrefab: {fileID: 2766508719166901459, guid: 0413217e22140494ba3d67c714f84f44, type: 3}
+  elementPrefab: {fileID: 1769831570510374051, guid: 284b2e810c480ab4494f8706a358d702, type: 3}
   healthPoints: 10
   dimensions: {x: 1, y: 1}
   placementOffset: {x: 0, y: 0}
   damagePoints: 2
+  damageCooldown: 1
   movementSpeed: 3

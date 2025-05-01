@@ -1,5 +1,5 @@
+using Extensions;
 using GameElements;
-using JetBrains.Annotations;
 using PlacementSystem;
 using UnityEngine;
 
@@ -18,23 +18,27 @@ public class SelectionManager : MonoBehaviour
     }
     #endregion
     
-    public delegate void OnElementSelectedHandler(GameElement element);
-    public OnElementSelectedHandler OnElementSelected;
+    public delegate void OnSelectableSelectedHandler(ISelectable selectable);
+    public event OnSelectableSelectedHandler OnSelectableSelected;
     
     public delegate void OnNothingSelectedHandler();
-    public OnNothingSelectedHandler OnNothingSelected;
+    public event OnNothingSelectedHandler OnNothingSelected;
 
-    private GameElement SelectedElement { get; set; }
-    private GameElement LastSelectedElement { get; set; }
+    private ISelectable SelectedSelectable { get; set; }
+    private ISelectable LastSelectedSelectable { get; set; }
 
     private void OnEnable()
     {
+        if (PlacementManager.Instance == null) return;
         PlacementManager.Instance.OnPlaceModeChanged += OnPlaceModeChanged;
+        PlacementManager.Instance.OnElementBuilt += OnElementBuilt;
     }
 
     private void OnDisable()
     {
+        if (PlacementManager.Instance == null) return;
         PlacementManager.Instance.OnPlaceModeChanged -= OnPlaceModeChanged;
+        PlacementManager.Instance.OnElementBuilt -= OnElementBuilt;
     }
 
     private void Update()
@@ -46,50 +50,52 @@ public class SelectionManager : MonoBehaviour
             var hit = Physics2D.Raycast(InputManager.MouseWorldPosition, Vector2.zero);
             
             if (hit.collider == null) NothingSelected();
-            else if (hit.collider.TryGetComponent(out GameElement element)) ElementSelected(element);
+            else if (hit.collider.TryGetComponent(out ISelectable selectable)) SelectableSelected(selectable);
         }
 
-        if (Input.GetMouseButtonDown(1) && SelectedElement != null)
+        if (Input.GetMouseButtonDown(1) && !Utils.IsUnityObjectNull(SelectedSelectable))
         {
             if (PlacementManager.Instance.InPlacementMode) return;
             if (InputManager.PointerOverUI) return;
             var hit = Physics2D.Raycast(InputManager.MouseWorldPosition, Vector2.zero);
             
-            GameElement otherElement = null;
-            if (hit.collider != null) hit.collider.TryGetComponent(out otherElement);
-            SelectedElement.SecondaryMouseInteraction(InputManager.MouseWorldPosition, otherElement);
+            ISelectable otherSelectable = null;
+            if (hit.collider != null) hit.collider.TryGetComponent(out otherSelectable);
+            SelectedSelectable.InteractWithOther(InputManager.MouseWorldPosition, otherSelectable);
         }
     }
+
+    private void OnElementBuilt(GameElement element) => SelectableSelected(element);
 
     private void OnPlaceModeChanged(bool state)
     {
         if (!state) NothingSelected();
     }
     
-    private void ElementSelected(GameElement element)
+    private void SelectableSelected(ISelectable selectable)
     {
-        LastSelectedElement = SelectedElement;
-        SelectedElement = element;
+        LastSelectedSelectable = SelectedSelectable;
+        SelectedSelectable = selectable;
 
-        if (LastSelectedElement != null && LastSelectedElement != SelectedElement)
+        if (!Utils.IsUnityObjectNull(LastSelectedSelectable) && LastSelectedSelectable != SelectedSelectable)
         {
-            LastSelectedElement.OnDeselected();
+            LastSelectedSelectable.Deselect();
         }
 
-        SelectedElement.OnSelected();
-        OnElementSelected?.Invoke(element);
+        SelectedSelectable.Select();
+        OnSelectableSelected?.Invoke(selectable);
     }
 
     private void NothingSelected()
     {
-        LastSelectedElement = SelectedElement;
+        LastSelectedSelectable = SelectedSelectable;
         
-        if (SelectedElement != null)
+        if (!Utils.IsUnityObjectNull(SelectedSelectable))
         {
-            SelectedElement.OnDeselected();
-        }
-        
-        SelectedElement = null;
+            SelectedSelectable.Deselect();                          
+        }                                                        
+                                                                 
+        SelectedSelectable = null;                               
         OnNothingSelected?.Invoke();
     }
 }

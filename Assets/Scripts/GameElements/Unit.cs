@@ -1,32 +1,87 @@
 using Blueprints;
+using CombatSystem;
+using Pathfinding;
 using UnityEngine;
 
 namespace GameElements
 {
-    public class Unit : GameElement
+    public class Unit : GameElement, IAttacker
     {
-        public int Damage { get; private set; }
         public UnitBlueprint UnitBlueprint => Blueprint as UnitBlueprint;
-        public UnitPathFollower PathFollower { get; set; }
 
-        protected override void OnInitialize()
+        #region Movement
+        private UnitPathFollower _pathFollower;
+
+        private UnitPathFollower PathFollower
         {
-            Damage = UnitBlueprint.damagePoints;
+            get
+            {
+                if (_pathFollower == null && !TryGetComponent(out _pathFollower))
+                    _pathFollower = gameObject.AddComponent<UnitPathFollower>();
+                return _pathFollower;
+            }
+        }
+        #endregion
+        
+        #region Attacking
+        private AttackEffector _attackEffector;
+        public AttackEffector AttackEffector
+        {
+            get
+            {
+                if (_attackEffector == null && !TryGetComponent(out _attackEffector))
+                    _attackEffector = gameObject.AddComponent<AttackEffector>();
+                return _attackEffector;
+            }
+        }
+        public GameElement AttackTarget { get; private set; }
+        public int AttackDamage => UnitBlueprint.damagePoints;
+        public float AttackCooldown => UnitBlueprint.damageCooldown;
+        public void Attack(IDamageable damageable) => AttackEffector.StartAttack(this, damageable);
+        #endregion
+
+        private void OnEnable()
+        {
+            PathFollower.OnReachedGameElement += OnReachedToElement;   
+            AttackEffector.OnBeforeAttack += OnBeforeAttack;
         }
 
-        public override void OnSelected()
+        private void OnDisable()
         {
-            SpriteRenderer.color = Color.yellow;
+            PathFollower.OnReachedGameElement -= OnReachedToElement;   
+            AttackEffector.OnBeforeAttack -= OnBeforeAttack;
         }
 
-        public override void OnDeselected()
+        public override void Select()
         {
-            SpriteRenderer.color = Color.white;
+            if (enableOnSelected != null)
+                enableOnSelected.SetActive(true);
         }
 
-        public override void SecondaryMouseInteraction(Vector3 mousePosition, GameElement otherElement)
+        public override void Deselect()
         {
-            UnitMovementManager.Instance.RegisterUnitMovement(this, mousePosition);
+            if (enableOnSelected != null)
+                enableOnSelected.SetActive(false);
+        }
+        
+        public override void InteractWithOther(Vector3 mousePosition, ISelectable otherSelectable)
+        {
+            AttackTarget = null;
+            
+            if (otherSelectable is GameElement otherElement)
+            {
+                PathFollower.MoveToElement(otherElement);
+                AttackTarget = otherElement;
+            }
+            
+            else PathFollower.MoveToPosition(mousePosition);
+        }
+        
+        private void OnReachedToElement(GameElement targetElement) => Attack(targetElement);
+
+        private void OnBeforeAttack()
+        {
+            if (!PathFollower.IsElementNearby((Vector2Int)Coordinates, AttackTarget)) AttackEffector.StopAttack();
         }
     }
 }

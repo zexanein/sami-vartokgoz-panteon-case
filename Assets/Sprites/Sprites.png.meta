@@ -44,7 +44,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 32
@@ -135,7 +135,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmptySquare
+      name: GroundTile
       rect:
         serializedVersion: 2
         x: 128
@@ -144,7 +144,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 4, y: 4, z: 4, w: 4}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -156,7 +156,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SoldierYellow
+      name: SoldierSnow
       rect:
         serializedVersion: 2
         x: 160
@@ -180,8 +180,8 @@ TextureImporter:
       name: Flag
       rect:
         serializedVersion: 2
-        x: 160
-        y: 32
+        x: 64
+        y: 0
         width: 32
         height: 32
       alignment: 0
@@ -198,7 +198,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SoldierBlue
+      name: SoldierDesert
       rect:
         serializedVersion: 2
         x: 128
@@ -219,7 +219,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SoldierRed
+      name: SoldierForest
       rect:
         serializedVersion: 2
         x: 96
@@ -243,7 +243,7 @@ TextureImporter:
       name: EmptyCircle
       rect:
         serializedVersion: 2
-        x: 64
+        x: 192
         y: 0
         width: 32
         height: 32
@@ -302,6 +302,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: RoundedSquare
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 4, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7860a78eb5611674298abab749ba3e4f
+      internalID: 972665086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RoundedEmptySquare
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 4, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e3a7b2f759d8ce45899a8718dca30b2
+      internalID: -1854148789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: GroundTileDesert
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 4, z: 4, w: 4}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e833a8d9c9b26664584c4abc722b0307
+      internalID: -1867445924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -315,13 +378,16 @@ TextureImporter:
     nameFileIdTable:
       Barracks: 358981288
       EmptyCircle: 207379499
-      EmptySquare: -926760251
       Flag: 871947013
+      GroundTile: -926760251
+      GroundTileDesert: -1867445924
       Heart: -736373396
       PowerPlant: -880727052
-      SoldierBlue: -1330071069
-      SoldierRed: 906328845
-      SoldierYellow: 1675785676
+      RoundedEmptySquare: -1854148789
+      RoundedSquare: 972665086
+      SoldierDesert: -1330071069
+      SoldierForest: 906328845
+      SoldierSnow: 1675785676
       Sword: 219704044
   spritePackingTag: 
   pSDRemoveMatte: 0

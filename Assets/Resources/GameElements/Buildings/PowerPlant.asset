@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PowerPlant
   m_EditorClassIdentifier: 
   elementName: Power Plant
-  elementDescription: Power Plant Placeholder Description
+  elementDescription: Generates power for your faction
   displaySprite: {fileID: -880727052, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   uiIcon: {fileID: -880727052, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   elementPrefab: {fileID: 1152630522925171679, guid: af0fdeef2841a624881b8fc78be7984f, type: 3}

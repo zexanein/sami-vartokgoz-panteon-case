@@ -13,30 +13,23 @@ namespace UI.Controllers
 
         private void OnEnable()
         {
-            PlacementManager.Instance.OnElementBuilt += OnElementBuilt;
-            SelectionManager.Instance.OnElementSelected += OnElementSelected;
-            SelectionManager.Instance.OnNothingSelected += OnNothingSelected;
+            if (SelectionManager.Instance != null)
+            {
+                SelectionManager.Instance.OnSelectableSelected += OnSelectableSelected;
+                SelectionManager.Instance.OnNothingSelected += OnNothingSelected;   
+            }
         }
 
         private void OnDisable()
         {
             if (SelectionManager.Instance != null)
             {
-                SelectionManager.Instance.OnElementSelected -= OnElementSelected;
+                SelectionManager.Instance.OnSelectableSelected -= OnSelectableSelected;
                 SelectionManager.Instance.OnNothingSelected -= OnNothingSelected;   
             }
-
-            if (PlacementManager.Instance != null)
-            {
-                PlacementManager.Instance.OnElementBuilt -= OnElementBuilt;
-            }
         }
 
-        public void DestroyElement(GameElement element)
-        {
-            PlacementManager.Instance.DestroyElementFrom(element.Coordinates);
-            InformationMenuView.HideInformation();
-        }
+        public void DestroyElement(GameElement element) => element.DestroyElement();
 
         public void ProduceUnit(UnitSpawnerBuilding unitSpawnerBuilding, UnitBlueprint unit)
         {
@@ -44,21 +37,40 @@ namespace UI.Controllers
             InformationMenuView.DisplayElementInformation(_currentlyDisplayingElement);
         }
 
-        private void OnElementBuilt(GameElement element)
-        {
-            InformationMenuView.DisplayElementInformation(element);
-        }
+        private void OnInspectingElementDestroyed(GameElement inspectingElement) => InformationMenuView.HideInformation();
 
-        private void OnElementSelected(GameElement element)
+        private void OnInspectingElementDamaged() => InformationMenuView.SetHealthText(_currentlyDisplayingElement.Health);
+
+        private void OnSelectableSelected(ISelectable selectable)
         {
+            if (selectable is not GameElement element) return;
+            
+            RemoveEventListenersFromInspectingElement();
             _currentlyDisplayingElement = element;
+            AddEventListenersToInspectingElement();
+            
             InformationMenuView.DisplayElementInformation(element);
         }
 
         private void OnNothingSelected()
         {
+            RemoveEventListenersFromInspectingElement();
             _currentlyDisplayingElement = null;
             InformationMenuView.HideInformation();
+        }
+
+        private void AddEventListenersToInspectingElement()
+        {
+            if (_currentlyDisplayingElement == null) return;
+            _currentlyDisplayingElement.OnDamaged += OnInspectingElementDamaged;
+            _currentlyDisplayingElement.OnElementDestroyed += OnInspectingElementDestroyed;
+        }
+
+        private void RemoveEventListenersFromInspectingElement()
+        {
+            if (_currentlyDisplayingElement == null) return; 
+            _currentlyDisplayingElement.OnDamaged -= OnInspectingElementDamaged;
+            _currentlyDisplayingElement.OnElementDestroyed -= OnInspectingElementDestroyed;
         }
     }
 }

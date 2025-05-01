@@ -155,7 +155,8 @@ PrefabInstance:
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -7322358722867201881, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
 --- !u!4 &1057174201580589259 stripped
 Transform:
@@ -179,5 +180,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41da1f45336c0b44589f109507e53c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableOnSelected: {fileID: 0}
   unitSpawnPoint: {fileID: 863939407813930260}
-  collisionLayer: {fileID: 0}

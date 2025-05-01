@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Blueprints;
 using Extensions;
@@ -34,9 +33,10 @@ namespace PlacementSystem.TilemapLayers
                 gameElement = elementGameObject.AddComponent<GameElement>();
             
             gameElement.Initialize(elementBlueprint, coordinates, TilemapReference);
-            RegisterArea((Vector2Int) gameElement.Coordinates, gameElement.Blueprint.dimensions, gameElement);
+            RegisterElement(gameElement);
 
             gameElement.OnCoordinatesChanged += OnElementCoordinatesChanged;
+            gameElement.OnElementDestroyed += Destroy;
             return gameElement;
         }
 
@@ -52,11 +52,13 @@ namespace PlacementSystem.TilemapLayers
             if (!_gameElements.TryGetValue(coordinates, out var gameElement)) return;
             
             gameElement.OnCoordinatesChanged -= OnElementCoordinatesChanged;
-            UnregisterArea((Vector2Int) gameElement.Coordinates, gameElement.Blueprint.dimensions);
+            gameElement.OnElementDestroyed -= Destroy;
+            UnregisterElement(gameElement);
             
             _gameElements.Remove(coordinates);
-            Destroy(gameElement.gameObject);
         }
+
+        private void Destroy(GameElement element) => Destroy((Vector2Int) element.Coordinates);
 
         public bool AreCoordinatesEmpty(Vector2 worldCoordinates, Vector2Int dimensions)
         {
@@ -64,9 +66,7 @@ namespace PlacementSystem.TilemapLayers
             return !IsAreaOccupied(coordinates, dimensions);
         }
 
-        public void RegisterElement(GameElement gameElement) => RegisterArea((Vector2Int) gameElement.Coordinates, gameElement.Blueprint.dimensions, gameElement); 
-
-        public void RegisterArea(Vector2Int coordinates, Vector2Int dimensions, GameElement gameElement)
+        private void RegisterArea(Vector2Int coordinates, Vector2Int dimensions, GameElement gameElement)
         {
             dimensions.Iterate(coordinates, tileCoordinates =>
             {
@@ -75,13 +75,23 @@ namespace PlacementSystem.TilemapLayers
             });
         }
 
-        public void UnregisterArea(Vector2Int coordinates, Vector2Int dimensions)
+        private void UnregisterArea(Vector2Int coordinates, Vector2Int dimensions)
         {
             dimensions.Iterate(coordinates, tileCoordinates =>
             {
                 _gameElements.Remove(tileCoordinates);
                 OnTileStateChanged?.Invoke(tileCoordinates, false);
             });
+        }
+
+        private void RegisterElement(GameElement element)
+        {
+            RegisterArea((Vector2Int) element.Coordinates, element.Blueprint.dimensions, element);
+        }
+
+        private void UnregisterElement(GameElement element)
+        {
+            UnregisterArea((Vector2Int) element.Coordinates, element.Blueprint.dimensions);
         }
 
         public bool IsAreaOccupied(Vector2 worldCoordinates, Vector2Int dimensions)

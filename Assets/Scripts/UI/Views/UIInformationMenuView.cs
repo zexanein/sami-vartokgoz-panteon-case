@@ -4,7 +4,6 @@ using TMPro;
 using UI.Controllers;
 using UI.Decorators;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace UI.Views
@@ -40,6 +39,9 @@ namespace UI.Views
             labelText.text = gameElement.Blueprint.elementName;
             descriptionText.text = gameElement.Blueprint.elementDescription;
             iconImage.sprite = gameElement.Blueprint.uiIcon;
+            
+            healthObject.SetActive(true);
+            SetHealthText(gameElement.Health);
         }
         
         public void DisplayElementInformation(GameElement gameElement)
@@ -61,7 +63,6 @@ namespace UI.Views
         {
             // Health and Destroy button
             healthObject.SetActive(true);
-            healthText.text = building.Health.ToString();
             destroyButtonText.text = "Destruct";
             
             // Production visuals
@@ -73,11 +74,9 @@ namespace UI.Views
 
         private void DisplayUnitInformation(Unit unit)
         {
-            // Health, Damage and Destroy button
-            healthObject.SetActive(true);
-            healthText.text = unit.Health.ToString();
+            // Damage and Destroy button
             damageObject.SetActive(true);
-            damageText.text = unit.Damage.ToString();
+            SetDamageText(unit.AttackDamage);
             destroyButtonText.text = "Kill";
         }
         
@@ -86,6 +85,9 @@ namespace UI.Views
             ResetInformation();
             menuContent.SetActive(false);
         }
+
+        public void SetHealthText(int health) => healthText.text = health.ToString();
+        private void SetDamageText(int damage) => damageText.text = damage.ToString();
 
         private void ResetInformation()
         {

@@ -48,7 +48,7 @@ namespace Pathfinding
         [SerializeField] private Vector2 gridOffset;
         
         public Dictionary<Vector2Int, PathfindingCell> cells = new();
-
+        
         private bool GridGenerated { get; set; }
 
         private void Start()
@@ -84,11 +84,37 @@ namespace Pathfinding
         private HashSet<Vector2Int> _searchedCells = new();
         private HashSet<Vector2Int> _lastFoundPath = new();
 
-        public List<Vector2Int> FindPath(Vector3 from, Vector3 to)
+        public List<Vector2Int> FindPath(Vector3 start, Vector3 target)
         {
-            var fromConverted = Vector2Int.FloorToInt(from);
-            var toConverted = Vector2Int.FloorToInt(to);
-            return FindPathInGrid(fromConverted, toConverted);
+            var startConverted = Vector2Int.FloorToInt(start);
+            var targetConverted = Vector2Int.FloorToInt(target);
+            
+            return cells[targetConverted].IsBlocked
+                ? new List<Vector2Int>()
+                : FindPathInGrid(startConverted, targetConverted);
+        }
+
+        public List<Vector2Int> FindPath(Vector3 start, List<Vector2Int> targets)
+        {
+            var startConverted = Vector2Int.FloorToInt(start);
+
+            var nearestDistance = int.MaxValue;
+            Vector2Int? nearest = null;
+            
+            foreach (var target in targets)
+            {
+                var targetConverted = Vector2Int.FloorToInt(target);
+                if (cells[targetConverted].IsBlocked) continue;
+
+                var distance = GetDistance(startConverted, targetConverted);
+                if (distance >= nearestDistance) continue;
+                nearestDistance = distance;
+                nearest = targetConverted;
+            }
+            
+            return nearest == null
+                ? new List<Vector2Int>()
+                : FindPathInGrid(startConverted, nearest.Value);
         }
         
         private List<Vector2Int> FindPathInGrid(Vector2Int startCoordinates, Vector2Int targetCoordinates)

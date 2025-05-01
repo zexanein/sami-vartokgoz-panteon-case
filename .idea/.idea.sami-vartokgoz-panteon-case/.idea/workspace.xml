@@ -6,33 +6,36 @@
   <component name="ChangeListManager">
     <list default="true" id="dea19160-e68f-46e0-bda7-bd596ae7a62e" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.sami-vartokgoz-panteon-case/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.sami-vartokgoz-panteon-case/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Barracks.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Barracks.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/BuildingBase.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/BuildingBase.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/PowerPlant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/PowerPlant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier2.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier2.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier3.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Soldier3.prefab.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier2.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier2.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier3.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/GameElements/Units/Soldier3.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/UnitProductionDatas/BarracksProductionData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/UnitProductionDatas/BarracksProductionData.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevelopmentScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DevelopmentScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blueprints/BuildingBlueprint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blueprints/BuildingBlueprint.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blueprints/UnitBlueprint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blueprints/UnitBlueprint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/RectIntExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/RectIntExtensions.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Extensions/VectorExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Extensions/VectorExtensions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameElements/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameElements/Building.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameElements/GameElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameElements/GameElement.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameElements/Unit.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameElements/Unit.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameElements/UnitSpawnerBuilding.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameElements/UnitSpawnerBuilding.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/SelectionManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/SelectionManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pathfinding/PathfindingManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pathfinding/PathfindingManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pathfinding/UnitPathFollower.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pathfinding/UnitPathFollower.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/PlacementManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/PlacementManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/CollisionLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/CollisionLayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/PlacementLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/PlacementLayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/PreviewLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/PreviewLayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/TilemapLayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlacementSystem/TilemapLayers/TilemapLayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIInformationMenuController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIInformationMenuController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Views/UIInformationMenuView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Views/UIInformationMenuView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnitProductionData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UnitProductionData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Buildings.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Buildings.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tiles/CollisionRect.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tiles/CollisionRect.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnitMovementManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnitMovementManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Sprites.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Sprites.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Sprites.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,43 +51,41 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/0b/65960d28/Dictionary`2.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/bc88c87c01184d1499d92d3b79a10ce615b400/21/2a3c9689/Object.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GameObjectPool.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/PathLayer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/PathfindingPlacementAdapter.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/PoolingManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/AttackEffector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Extensions/TransformExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Extensions/UIExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Extensions/Utils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/IDamageable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlacementSystem/PlacementManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Controllers/UIControllerBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Decorators/UIUnitSelectButtonDecorator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Views/UIViewBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/UnitMovementManager.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
+  &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="2wEG55RJ8auyODHYLYv0H85zwr6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "RiderCSharpLiveTemplatesSettingsId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.45f1\Editor\Unity.exe" />
@@ -151,7 +152,15 @@
       <workItem from="1745749448413" duration="3489000" />
       <workItem from="1745757525970" duration="22767000" />
       <workItem from="1745902722145" duration="4207000" />
-      <workItem from="1745914888196" duration="39882000" />
+      <workItem from="1745914888196" duration="49135000" />
+      <workItem from="1746025110600" duration="10021000" />
+      <workItem from="1746042418844" duration="521000" />
+      <workItem from="1746042982903" duration="41000" />
+      <workItem from="1746043041328" duration="54000" />
+      <workItem from="1746043111973" duration="180000" />
+      <workItem from="1746043306834" duration="100000" />
+      <workItem from="1746043425389" duration="116000" />
+      <workItem from="1746043562134" duration="12176000" />
     </task>
     <servers />
   </component>

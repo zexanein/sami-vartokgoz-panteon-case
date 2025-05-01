@@ -10,6 +10,8 @@ namespace GameElements
 
         protected override void OnInitialize()
         {
+            base.OnInitialize();
+            
             // Set position of unit spawn point
             var unitSpawnPointCellPosition = Coordinates + (Vector3Int) BuildingBlueprint.unitSpawnPointCoordinates;
             unitSpawnPoint.transform.position = ParentTilemap.CellToWorld(unitSpawnPointCellPosition) + ParentTilemap.cellSize / 2;

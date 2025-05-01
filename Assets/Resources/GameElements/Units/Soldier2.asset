@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Soldier2
   m_EditorClassIdentifier: 
   elementName: Soldier2
-  elementDescription: A Blue Soldier
+  elementDescription: Soldier for Desert
   displaySprite: {fileID: -1330071069, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   uiIcon: {fileID: -1330071069, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
-  elementPrefab: {fileID: 65587457270177641, guid: e692b9102e4e1e64dbfb331c1ccb531b, type: 3}
+  elementPrefab: {fileID: 1769831570510374051, guid: ae7de89f814c77f4cbc860ee287f286d, type: 3}
   healthPoints: 10
   dimensions: {x: 1, y: 1}
   placementOffset: {x: 0, y: 0}
   damagePoints: 5
+  damageCooldown: 1
   movementSpeed: 3

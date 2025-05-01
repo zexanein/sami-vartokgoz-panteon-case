@@ -11,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - GameElements
   - 
   - 
   - 
@@ -52,4 +52,7 @@ TagManager:
     locked: 0
   - name: Preview
     uniqueID: 881191665
+    locked: 0
+  - name: Indicators
+    uniqueID: 2094843923
     locked: 0

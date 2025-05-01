@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Soldier
   m_EditorClassIdentifier: 
   elementName: Soldier
-  elementDescription: A Red Soldier
+  elementDescription: Soldier for Forest
   displaySprite: {fileID: 906328845, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   uiIcon: {fileID: 906328845, guid: 15d658b378575f240b6f5b3e7a873752, type: 3}
   elementPrefab: {fileID: 1769831570510374051, guid: c4e52e1e768295347bb056239c504a2a, type: 3}
@@ -21,4 +21,5 @@ MonoBehaviour:
   dimensions: {x: 1, y: 1}
   placementOffset: {x: 0, y: 0}
   damagePoints: 10
+  damageCooldown: 1
   movementSpeed: 3
