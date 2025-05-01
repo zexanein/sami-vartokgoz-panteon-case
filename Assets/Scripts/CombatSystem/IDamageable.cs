@@ -21,7 +21,7 @@ namespace CombatSystem
         /// Event triggered when the object takes damage.
         /// Useful for triggering animations, sound effects, etc.
         /// </summary>
-        delegate void OnDamagedHandler();
-        event OnDamagedHandler OnDamaged;
+        delegate void OnHealthChangedHandler();
+        event OnHealthChangedHandler OnHealthChanged;
     }
 }

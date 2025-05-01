@@ -32,6 +32,7 @@ namespace Pathfinding
         /// <param name="follower">The unit path follower to register.</param>
         public void RegisterUnitPathFollower(UnitPathFollower follower)
         {
+            if (follower == null) return;
             if (!ActivePathFollowers.Contains(follower)) ActivePathFollowers.Add(follower);
         }
 
@@ -41,7 +42,8 @@ namespace Pathfinding
         /// <param name="follower">The unit path follower to unregister.</param>
         public void UnregisterUnitPathFollower(UnitPathFollower follower)
         {
-            ActivePathFollowers.Remove(follower);
+            if (follower == null) return;
+            if (ActivePathFollowers.Contains(follower)) ActivePathFollowers.Remove(follower);
         }
 
         /// <summary>

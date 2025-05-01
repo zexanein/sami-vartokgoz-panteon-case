@@ -60,7 +60,7 @@ namespace UI.Controllers
         /// <summary>
         /// Called when the inspected element takes damage. Updates the health display.
         /// </summary>
-        private void OnInspectingElementDamaged() =>
+        private void OnInspectingElementHealthChanged() =>
             InformationMenuView.SetHealthText(_inspectingElement.Health);
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace UI.Controllers
         private void AddEventListenersToInspectingElement()
         {
             if (_inspectingElement == null) return;
-            _inspectingElement.OnDamaged += OnInspectingElementDamaged;
+            _inspectingElement.OnHealthChanged += OnInspectingElementHealthChanged;
             _inspectingElement.OnElementDestroyed += OnInspectingElementDestroyed;
         }
 
@@ -105,7 +105,7 @@ namespace UI.Controllers
         private void RemoveEventListenersFromInspectingElement()
         {
             if (_inspectingElement == null) return;
-            _inspectingElement.OnDamaged -= OnInspectingElementDamaged;
+            _inspectingElement.OnHealthChanged -= OnInspectingElementHealthChanged;
             _inspectingElement.OnElementDestroyed -= OnInspectingElementDestroyed;
         }
     }

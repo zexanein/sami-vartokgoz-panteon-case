@@ -33,6 +33,7 @@ public class GameObjectPool : MonoBehaviour
         pooledGameObject.transform.SetParent(parent == null ? transform : parent);
         pooledGameObject.transform.position = position;
         pooledGameObject.transform.rotation = rotation;
+        pooledGameObject.transform.localScale = prefabToSpawn.transform.localScale;
         pooledGameObject.SetActive(true);
 
         return pooledGameObject;
@@ -51,7 +52,7 @@ public class GameObjectPool : MonoBehaviour
     /// Resets its transform and prepares it for future reuse.
     /// </summary>
     /// <param name="gameObjectToBeAdded">The GameObject to return to the pool.</param>
-    public void ReturnToPool(GameObject gameObjectToBeAdded)
+    public void Return(GameObject gameObjectToBeAdded)
     {
         gameObjectToBeAdded.SetActive(false);
         gameObjectToBeAdded.transform.SetParent(transform);
@@ -66,9 +67,22 @@ public class GameObjectPool : MonoBehaviour
     /// Returns a list of GameObjects to the pool.
     /// </summary>
     /// <param name="gameObjectsToBeAdded">The list of GameObjects to return.</param>
-    public void ReturnAllToPool(List<GameObject> gameObjectsToBeAdded)
+    public void ReturnAll(List<GameObject> gameObjectsToBeAdded)
     {
         foreach (var gameObjectToBeAdded in gameObjectsToBeAdded)
-            ReturnToPool(gameObjectToBeAdded);
+            Return(gameObjectToBeAdded);
+    } 
+    
+    /// <summary>
+    /// Returns all children of the specified parent transform to the pool.
+    /// </summary>
+    /// <param name="parentTransform">The parent transform containing the GameObjects to return.</param>
+    public void ReturnChildren(Transform parentTransform)
+    {
+        for (var i = 0; i < parentTransform.childCount;)
+        {
+            var child = parentTransform.GetChild(0).gameObject;
+            Return(child);
+        }
     }
 }

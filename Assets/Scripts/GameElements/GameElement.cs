@@ -47,7 +47,7 @@ namespace GameElements
         /// <summary>
         /// The maximum health of the element.
         /// </summary>
-        private int MaxHealth { get; set; }
+        public int MaxHealth { get; set; }
         
         /// <summary>
         /// Whether the element is dead
@@ -74,7 +74,7 @@ namespace GameElements
         /// <summary>
         /// Triggered when the element takes damage.
         /// </summary>
-        public event IDamageable.OnDamagedHandler OnDamaged;
+        public event IDamageable.OnHealthChangedHandler OnHealthChanged;
 
         /// <summary>
         /// Initializes the game element with the provided blueprint, coordinates, and parent tilemap.
@@ -89,6 +89,7 @@ namespace GameElements
             MaxHealth = blueprint.healthPoints;
             Health = MaxHealth;
             _coordinates = coordinates;
+            HealthBarManager.Instance.RegisterHealthBar(this);
             OnInitialize();
         }
 
@@ -117,8 +118,9 @@ namespace GameElements
         /// </summary>
         public void TakeDamage(int amount)
         {
+            var oldHealth = Health;
             Health -= amount;
-            OnDamaged?.Invoke();
+            if (oldHealth != Health) OnHealthChanged?.Invoke();
             if (Health > 0) return;
             Die();
         }

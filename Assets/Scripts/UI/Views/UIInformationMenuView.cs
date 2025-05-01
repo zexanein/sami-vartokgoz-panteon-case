@@ -132,7 +132,7 @@ namespace UI.Views
         private void UpdateUnitProductionVisuals(UnitSpawnerBuilding unitSpawnerBuilding)
         {
             // Clear previous buttons
-            unitButtonContainer.transform.ClearChildren();
+            PoolingManager.Instance.UnitProduceButtonPool.ReturnChildren(unitButtonContainer.transform);
 
             var isSpawnPointEmpty = unitSpawnerBuilding.IsSpawnPointEmpty();
             unitSpawnPointBlockedWarningText.gameObject.SetActive(!isSpawnPointEmpty);
@@ -140,7 +140,10 @@ namespace UI.Views
             // Create new buttons
             foreach (var unitBlueprint in unitSpawnerBuilding.BuildingBlueprint.productionData.blueprints)
             {
-                var spawnedDecorator = Instantiate(unitButtonDecorator, unitButtonContainer.transform);
+                var spawnedDecorator = PoolingManager.Instance.UnitProduceButtonPool
+                    .GetFromPool(unitButtonContainer.transform)
+                    .GetComponent<UIButtonDecorator>();
+                
                 spawnedDecorator.UpdateVisuals(unitBlueprint.elementName, unitBlueprint.uiIcon);
                 spawnedDecorator.SetOnClickEvent(() => InformationMenuController.ProduceUnit(unitSpawnerBuilding, unitBlueprint));
                 spawnedDecorator.SetInteractable(isSpawnPointEmpty);

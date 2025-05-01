@@ -151,7 +151,7 @@ namespace Pathfinding
         /// </summary>
         private void ClearPathVisuals()
         {
-            PoolingManager.Instance.PathVisualPool.ReturnAllToPool(PathVisuals);
+            PoolingManager.Instance.PathVisualPool.ReturnAll(PathVisuals);
             PathVisuals.Clear();
         }
 
@@ -211,7 +211,7 @@ namespace Pathfinding
 
             if (PathVisuals.Count > 0)
             {
-                PoolingManager.Instance.PathVisualPool.ReturnToPool(PathVisuals[0]);
+                PoolingManager.Instance.PathVisualPool.Return(PathVisuals[0]);
                 PathVisuals.RemoveAt(0);   
             }
         

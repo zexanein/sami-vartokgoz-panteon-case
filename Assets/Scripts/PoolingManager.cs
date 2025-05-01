@@ -22,4 +22,6 @@ public class PoolingManager : MonoBehaviour
     /// Pool for the path visual elements.
     /// </summary>
     [field: SerializeField] public GameObjectPool PathVisualPool { get; private set; }
+    [field: SerializeField] public GameObjectPool HealthBarPool { get; private set; }
+    [field: SerializeField] public GameObjectPool UnitProduceButtonPool { get; private set; }
 }

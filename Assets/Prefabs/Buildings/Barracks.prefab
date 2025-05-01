@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2169749410250070495, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
+      propertyPath: targetElement
+      value: 
+      objectReference: {fileID: 5466692211882774601}
     - target: {fileID: 4718683212967693668, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
       propertyPath: m_Name
       value: Barracks
@@ -154,6 +158,22 @@ PrefabInstance:
     - target: {fileID: 8310876311219440567, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
       propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892107199798509429, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892107199798509429, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892107199798509429, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892107199798509429, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -7322358722867201881, guid: 4d86b49f672bef24f99b431e24e5cdf9, type: 3}
