@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Blueprints;
 using CombatSystem;
@@ -7,9 +6,19 @@ using UnityEngine.Tilemaps;
 
 namespace GameElements
 {
+    /// <summary>
+    /// Represents a game element that can be placed on a tilemap
+    /// Common base class for buildings, units, or other grid-based entities.
+    /// Implements <see cref="IDamageable"/> for health management and <see cref="ISelectable"/> for selection handling.
+    /// </summary>
     public class GameElement : MonoBehaviour, IDamageable, ISelectable
     {
         private Vector3Int _coordinates;
+        
+        /// <summary>
+        /// The current grid coordinates of the element.
+        /// Fires <see cref="OnCoordinatesChanged"/> when updated.
+        /// </summary>
         public Vector3Int Coordinates
         {
             get => _coordinates;
@@ -19,19 +28,60 @@ namespace GameElements
                 _coordinates = value;
             }
         }
-        public GameElementBlueprint Blueprint { get; private set; }
-        public Tilemap ParentTilemap { get; private set; }
-        public int Health { get; private set; }
-        private int MaxHealth { get; set; }
-        public bool IsDead => Health <= 0;
-        public GameObject enableOnSelected;
         
+        /// <summary>
+        /// The blueprint that defines the properties and behavior of this game element.
+        /// </summary>
+        public GameElementBlueprint Blueprint { get; private set; }
+        
+        /// <summary>
+        /// The tilemap this element is placed on.
+        /// </summary>
+        public Tilemap ParentTilemap { get; private set; }
+        
+        /// <summary>
+        /// The current health of the element.
+        /// </summary>
+        public int Health { get; private set; }
+        
+        /// <summary>
+        /// The maximum health of the element.
+        /// </summary>
+        private int MaxHealth { get; set; }
+        
+        /// <summary>
+        /// Whether the element is dead
+        /// </summary>
+        public bool IsDead => Health <= 0;
+        
+        /// <summary>
+        /// Optional GameObject that will be enabled when the element is selected. and disabled when deselected.
+        /// </summary>
+        public GameObject enableOnSelected;
+
+        /// <summary>
+        /// Triggered when the element's coordinates change.
+        /// </summary>
         public delegate void OnCoordinatesChangedHandler(GameElement element, Vector2Int oldCoordinates, Vector2Int newCoordinates);
         public event OnCoordinatesChangedHandler OnCoordinatesChanged;
+        
+        /// <summary>
+        /// Triggered when the element is destroyed. (via damage or manual destruction)
+        /// </summary>
         public delegate void OnElementDestroyedHandler(GameElement element);
         public event OnElementDestroyedHandler OnElementDestroyed;
-        public event IDamageable.OnDamagedHandler OnDamaged;
         
+        /// <summary>
+        /// Triggered when the element takes damage.
+        /// </summary>
+        public event IDamageable.OnDamagedHandler OnDamaged;
+
+        /// <summary>
+        /// Initializes the game element with the provided blueprint, coordinates, and parent tilemap.
+        /// </summary>
+        /// <param name="blueprint">The blueprint that defines the properties and behavior of this game element.</param>
+        /// <param name="coordinates">The grid coordinates where the element will be placed.</param>
+        /// <param name="parentTilemap">The tilemap this element is placed on.</param>
         public void Initialize(GameElementBlueprint blueprint, Vector3Int coordinates, Tilemap parentTilemap)
         {
             Blueprint = blueprint;
@@ -41,12 +91,30 @@ namespace GameElements
             _coordinates = coordinates;
             OnInitialize();
         }
-    
+
+        /// <summary>
+        /// Called when the element is initialized. Can be overridden in derived classes to perform additional setup.
+        /// </summary>
         protected virtual void OnInitialize() { }
+        
+        /// <summary>
+        /// Called when the element is selected. Can be overridden
+        /// </summary>
         public virtual void Select() { }
+        
+        /// <summary>
+        /// Called when the element is deselected. Can be overridden
+        /// </summary>
         public virtual void Deselect() { }
+        
+        /// <summary>
+        /// Handles contextual interaction with another selectable at the given world position.
+        /// </summary>
         public virtual void InteractWithOther(Vector3 mousePosition, ISelectable other) { }
 
+        /// <summary>
+        /// Applies damage to the element and triggers death if health reaches zero.
+        /// </summary>
         public void TakeDamage(int amount)
         {
             Health -= amount;
@@ -55,18 +123,28 @@ namespace GameElements
             Die();
         }
 
+        /// <summary>
+        /// Marks the element as dead and triggers destruction.
+        /// </summary>
         private void Die()
         {
             Health = 0;
             DestroyElement();
         }
 
+        /// <summary>
+        /// Destroys the element and triggers the OnElementDestroyed event.
+        /// </summary>
         public void DestroyElement()
         {   
             OnElementDestroyed?.Invoke(this);
             Destroy(gameObject);
         }
 
+        /// <summary>
+        /// Gets the coordinates of the element's perimeter points.
+        /// </summary>
+        /// <returns>A list of coordinates representing the perimeter points of the element.</returns>
         public List<Vector2Int> GetCoordinatesAround()
         {
             var bottomLeft = (Vector2Int) Coordinates - Blueprint.dimensions / 2;

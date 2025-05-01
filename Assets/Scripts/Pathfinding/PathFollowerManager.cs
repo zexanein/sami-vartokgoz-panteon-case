@@ -1,41 +1,66 @@
 using System.Collections.Generic;
 using System.Linq;
-using Pathfinding;
 using UnityEngine;
 
-public class PathFollowerManager : MonoBehaviour
+namespace Pathfinding
 {
-    #region Singleton
-    private static PathFollowerManager _instance;
-    public static PathFollowerManager Instance
+    /// <summary>
+    /// This class manages the path followers in the game.
+    /// </summary>
+    public class PathFollowerManager : MonoBehaviour
     {
-        get
+        #region Singleton
+        private static PathFollowerManager _instance;
+        public static PathFollowerManager Instance
         {
-            if (_instance == null) _instance = FindObjectOfType<PathFollowerManager>();
-            return _instance;
+            get
+            {
+                if (_instance == null) _instance = FindObjectOfType<PathFollowerManager>();
+                return _instance;
+            }
         }
-    }
-    #endregion
+        #endregion
 
-    private List<UnitPathFollower> ActivePathFollowers { get; } = new();
+        /// <summary>
+        /// List of active path followers.
+        /// </summary>
+        private List<UnitPathFollower> ActivePathFollowers { get; } = new();
 
-    public void RegisterUnitPathFollower(UnitPathFollower follower)
-    {
-        if (!ActivePathFollowers.Contains(follower)) ActivePathFollowers.Add(follower);
-    }
+        /// <summary>
+        /// Registers a unit path follower to the list of active path followers.
+        /// </summary>
+        /// <param name="follower">The unit path follower to register.</param>
+        public void RegisterUnitPathFollower(UnitPathFollower follower)
+        {
+            if (!ActivePathFollowers.Contains(follower)) ActivePathFollowers.Add(follower);
+        }
 
-    public void UnregisterUnitPathFollower(UnitPathFollower follower)
-    {
-        ActivePathFollowers.Remove(follower);
-    }
+        /// <summary>
+        /// Unregisters a unit path follower from the list of active path followers.
+        /// </summary>
+        /// <param name="follower">The unit path follower to unregister.</param>
+        public void UnregisterUnitPathFollower(UnitPathFollower follower)
+        {
+            ActivePathFollowers.Remove(follower);
+        }
 
-    public bool IsAnyUnitMovingTo(Vector2Int coordinates)
-    {
-        return ActivePathFollowers.Any(f => f.Destination == coordinates);
-    }
+        /// <summary>
+        /// Checks if any unit is moving to the specified coordinates.
+        /// </summary>
+        /// <param name="coordinates">The coordinates to check.</param>
+        /// <returns></returns>
+        private bool IsAnyUnitMovingTo(Vector2Int coordinates)
+        {
+            return ActivePathFollowers.Any(f => f.Destination == coordinates);
+        }
 
-    public void GetBestAvailablePath(List<Vector2Int> path)
-    {   
-        while (path.Count > 1 && IsAnyUnitMovingTo(path[^1])) path.RemoveAt(path.Count - 1);
+        /// <summary>
+        /// Removes coordinates from end of the path if any unit is moving to that coordinate.
+        /// </summary>
+        /// <param name="path">List of coordinates representing the path.</param>
+        public void GetBestAvailablePath(List<Vector2Int> path)
+        {   
+            while (path.Count > 1 && IsAnyUnitMovingTo(path[^1])) path.RemoveAt(path.Count - 1);
+        }
     }
 }

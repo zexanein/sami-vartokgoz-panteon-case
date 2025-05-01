@@ -47,36 +47,53 @@ namespace Pathfinding
         [SerializeField] private Vector2Int cellSize = Vector2Int.one;
         [SerializeField] private Vector2 gridOffset;
         
-        public Dictionary<Vector2Int, PathfindingCell> cells = new();
-        
+        /// <summary>
+        /// The dictionary that stores the pathfinding cells.
+        /// </summary>
+        private Dictionary<Vector2Int, PathfindingCell> _cells = new();
+
+        /// <summary>
+        /// Indicates whether the grid has been generated.
+        /// </summary>
         private bool GridGenerated { get; set; }
 
+        /// <summary>
+        /// Generates the grid of pathfinding cells when the script is started.
+        /// </summary>
         private void Start()
         {
             GenerateGrid();
         }
 
+        /// <summary>
+        /// Generates the grid of pathfinding cells.
+        /// </summary>
         private void GenerateGrid()
         {
-            cells.Clear();
+            _cells.Clear();
             
             for (var x = gridSize.x / -2; x < gridSize.x / 2; x++) 
             for (var y = gridSize.y / -2; y < gridSize.y / 2; y++)
             {
                 var coordinates = new Vector2Int(x, y);
-                cells.TryAdd(coordinates, new PathfindingCell(coordinates));
+                _cells.TryAdd(coordinates, new PathfindingCell(coordinates));
             }
             
             GridGenerated = true;
         }
 
-        public PathfindingCell GetCell(Vector3 worldPosition)
+        /// <summary>
+        /// Gets the pathfinding cell at the specified world position.
+        /// </summary>
+        /// <param name="worldPosition">The world position to get the cell for.</param>
+        /// <returns>If the cell exists, returns the cell; otherwise, creates a new cell and returns it.</returns>
+        private PathfindingCell GetCell(Vector3 worldPosition)
         {
             var coordinates = Vector2Int.FloorToInt(worldPosition);
-            if (cells.TryGetValue(coordinates, out var cell)) return cell;
+            if (_cells.TryGetValue(coordinates, out var cell)) return cell;
             
             cell = new PathfindingCell(coordinates);
-            cells.Add(coordinates, cell);
+            _cells.Add(coordinates, cell);
             return cell;
         }
 
@@ -84,16 +101,26 @@ namespace Pathfinding
         private HashSet<Vector2Int> _searchedCells = new();
         private HashSet<Vector2Int> _lastFoundPath = new();
 
+        /// <summary>
+        /// Finds a path from the start position to the target position.
+        /// </summary>
+        /// <returns>List of <c>Vector2Int</c> representing the path from start to target.</returns>
         public List<Vector2Int> FindPath(Vector3 start, Vector3 target)
         {
             var startConverted = Vector2Int.FloorToInt(start);
             var targetConverted = Vector2Int.FloorToInt(target);
             
-            return cells[targetConverted].IsBlocked
+            return _cells[targetConverted].IsBlocked
                 ? new List<Vector2Int>()
                 : FindPathInGrid(startConverted, targetConverted);
         }
 
+        /// <summary>
+        /// Finds a path from the start position to the nearest target position in the list of targets.
+        /// </summary>
+        /// <param name="start">The starting position.</param>
+        /// <param name="targets">List of target positions to search for the nearest one.</param>
+        /// <returns>List of <c>Vector2Int</c> representing the path from start to target.</returns>
         public List<Vector2Int> FindPath(Vector3 start, List<Vector2Int> targets)
         {
             var startConverted = Vector2Int.FloorToInt(start);
@@ -104,7 +131,7 @@ namespace Pathfinding
             foreach (var target in targets)
             {
                 var targetConverted = Vector2Int.FloorToInt(target);
-                if (cells[targetConverted].IsBlocked) continue;
+                if (_cells[targetConverted].IsBlocked) continue;
 
                 var distance = GetDistance(startConverted, targetConverted);
                 if (distance >= nearestDistance) continue;
@@ -117,17 +144,21 @@ namespace Pathfinding
                 : FindPathInGrid(startConverted, nearest.Value);
         }
         
+        /// <summary>
+        /// Finds a path in the grid from the start coordinates to the target coordinates.
+        /// </summary>
+        /// <returns>List of <c>Vector2Int</c> representing the path from start to target.</returns>
         private List<Vector2Int> FindPathInGrid(Vector2Int startCoordinates, Vector2Int targetCoordinates)
         {
-            foreach (var cellToSearchCoord in _cellsToSearch) cells[cellToSearchCoord].ResetData();
-            foreach (var searchedCellCoord in _searchedCells) cells[searchedCellCoord].ResetData();
+            foreach (var cellToSearchCoord in _cellsToSearch) _cells[cellToSearchCoord].ResetData();
+            foreach (var searchedCellCoord in _searchedCells) _cells[searchedCellCoord].ResetData();
             
             _cellsToSearch.Clear();
             _cellsToSearch.Add(startCoordinates);
             
             _searchedCells.Clear();
 
-            var startCell = cells[startCoordinates];
+            var startCell = _cells[startCoordinates];
             startCell.GCost = 0;
             startCell.HCost = GetDistance(startCoordinates, targetCoordinates);
             startCell.FCost = GetDistance(startCoordinates, targetCoordinates);
@@ -139,10 +170,10 @@ namespace Pathfinding
 
                 foreach (var cellCoordinates in _cellsToSearch)
                 {
-                    var cell = cells[cellCoordinates];
+                    var cell = _cells[cellCoordinates];
 
-                    if (cell.FCost < cells[cellToSearchCoordinates].FCost ||
-                        (cell.GCost == cells[cellToSearchCoordinates].FCost && cell.HCost == cells[cellToSearchCoordinates].HCost))
+                    if (cell.FCost < _cells[cellToSearchCoordinates].FCost ||
+                        (cell.GCost == _cells[cellToSearchCoordinates].FCost && cell.HCost == _cells[cellToSearchCoordinates].HCost))
                         cellToSearchCoordinates = cellCoordinates;
                 }
 
@@ -154,12 +185,12 @@ namespace Pathfinding
                 // Finish searching when reached to target
                 if (cellToSearchCoordinates == targetCoordinates)
                 {
-                    var pathCell = cells[targetCoordinates];
+                    var pathCell = _cells[targetCoordinates];
 
                     while (pathCell.Coordinates != startCoordinates)
                     {
                         finalPath.Insert(0, pathCell.Coordinates);
-                        pathCell = cells[pathCell.Connection];
+                        pathCell = _cells[pathCell.Connection];
                     }
                     
                     finalPath.Insert(0, startCoordinates);
@@ -176,6 +207,11 @@ namespace Pathfinding
             return new List<Vector2Int>();
         }
 
+        /// <summary>
+        /// Searches the neighbors of the given cell coordinates and updates their costs and connections.
+        /// </summary>
+        /// <param name="cellCoordinates">The coordinates of the cell to search neighbors for.</param>
+        /// <param name="targetCoordinates">The coordinates of the target cell.</param>
         private void SearchNeighbors(Vector2Int cellCoordinates, Vector2Int targetCoordinates)
         {
             for (var x = cellCoordinates.x - cellSize.x; x <= cellSize.x + cellCoordinates.x ; x += cellSize.x)
@@ -183,9 +219,9 @@ namespace Pathfinding
             {
                 var neighborCoordinates = new Vector2Int(x, y);
 
-                if (!cells.TryGetValue(neighborCoordinates, out var neighborCell) || _searchedCells.Contains(neighborCoordinates) || neighborCell.IsBlocked) continue;
+                if (!_cells.TryGetValue(neighborCoordinates, out var neighborCell) || _searchedCells.Contains(neighborCoordinates) || neighborCell.IsBlocked) continue;
                 
-                var gCostToNeighbor = cells[cellCoordinates].GCost + GetDistance(neighborCoordinates, targetCoordinates);
+                var gCostToNeighbor = _cells[cellCoordinates].GCost + GetDistance(neighborCoordinates, targetCoordinates);
                 if (gCostToNeighbor >= neighborCell.GCost) continue;
                 
                 neighborCell.Connection = cellCoordinates;
@@ -197,6 +233,10 @@ namespace Pathfinding
             }
         }
 
+        /// <summary>
+        /// Calculates the distance between cell a and cell b using the Manhattan distance formula.
+        /// </summary>
+        /// <returns>The distance between the two cells.</returns>
         private int GetDistance(Vector2Int a, Vector2Int b)
         {
             var distance = new Vector2Int(Mathf.Abs(a.x - b.x), Mathf.Abs(a.y - b.y));
@@ -209,11 +249,17 @@ namespace Pathfinding
             return lowest * 14 + delta * 10;
         }
 
+        /// <summary>
+        /// Gets the pathfinding cell at the specified world position and sets it as blocked.
+        /// </summary>
         public void RegisterObstacle(Vector3 worldPosition)
         {
             GetCell(worldPosition).IsBlocked = true;
         }
 
+        /// <summary>
+        /// Unregisters the pathfinding cell at the specified world position, making it walkable again.
+        /// </summary>
         public void UnregisterObstacle(Vector3 worldPosition)
         {
             GetCell(worldPosition).IsBlocked = false;   
@@ -228,7 +274,7 @@ namespace Pathfinding
             var pathColor = new Color(1, 1, 0, 0.1f);
             var unwalkableColor = new Color(1, 0, 0, 0.1f);
             
-            foreach (var kvp in cells)
+            foreach (var kvp in _cells)
             {
                 if (kvp.Value.IsBlocked)
                 {

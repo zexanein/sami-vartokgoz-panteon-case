@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class contains a singleton instance.
+/// It is working as a shorthand to access different pools.
+/// </summary>
 public class PoolingManager : MonoBehaviour
 {
     #region Singleton
@@ -16,5 +18,8 @@ public class PoolingManager : MonoBehaviour
     }
     #endregion
     
+    /// <summary>
+    /// Pool for the path visual elements.
+    /// </summary>
     [field: SerializeField] public GameObjectPool PathVisualPool { get; private set; }
 }

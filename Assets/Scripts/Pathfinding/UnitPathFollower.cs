@@ -5,14 +5,34 @@ using UnityEngine;
 
 namespace Pathfinding
 {
+    /// <summary>
+    /// Handles path following behavior for units, including movement execution, path visualization,
+    /// and target detection
+    /// </summary>
     [RequireComponent(typeof(Unit))]
     public class UnitPathFollower : MonoBehaviour
     {
         private Coroutine _movementCoroutine;
+        
+        /// <summary>
+        /// The final destination coordinates of the current path
+        /// </summary>
         public Vector2Int Destination { get; private set; }
-        public List<Vector2Int> ActivePath { get; set; }
+        
+        /// <summary>
+        /// List of waypoints comprising the current active path
+        /// </summary>
+        private List<Vector2Int> ActivePath { get; set; }
+        
+        /// <summary>
+        /// Visual indicators for the current path
+        /// </summary>
         private List<GameObject> PathVisuals { get; } = new();
         private Unit _unit;
+        
+        /// <summary>
+        /// Reference to the Unit component with lazy initialization
+        /// </summary>
         private Unit UnitReference
         {
             get
@@ -21,26 +41,25 @@ namespace Pathfinding
                 return _unit;
             }
         }
-        
-        public Vector3Int Coordinates => UnitReference.Coordinates;
 
+        /// <summary>
+        /// Flag indicating whether the unit is currently following a path
+        /// </summary>
         private bool FollowingPath { get; set; }
 
-        public delegate void OnReachedWaypointHandler(Vector2Int waypointCoordinates, int waypointIndex);
-        public event OnReachedWaypointHandler OnReachedWaypoint;
-
-        public delegate void OnReachedDestinationHandler();
-        public event OnReachedDestinationHandler OnReachedDestination;
-
+        /// <summary>
+        /// Event invoked when the unit reaches its target game element
+        /// </summary>
         public delegate void OnReachedGameElementHandler(GameElement element);
         public event OnReachedGameElementHandler OnReachedGameElement;
 
-        public delegate void OnMovingStopHandler();
-        public event OnMovingStopHandler OnMovingStop;
-
+        /// <summary>
+        /// Moves the unit to the specified position.
+        /// </summary>
+        /// <param name="targetPosition">The target position to move to.</param>
         public void MoveToPosition(Vector3 targetPosition)
         {
-            var path = PathfindingManager.Instance.FindPath(Coordinates, targetPosition);
+            var path = PathfindingManager.Instance.FindPath(UnitReference.Coordinates, targetPosition);
             PathFollowerManager.Instance.GetBestAvailablePath(path);
             if (path.Count <= 1) return;
             
@@ -49,9 +68,13 @@ namespace Pathfinding
             StartFollowPath(path);
         }
 
+        /// <summary>
+        /// Moves the unit to the specified element.
+        /// </summary>
+        /// <param name="targetElement">The target element to move to.</param>
         public void MoveToElement(GameElement targetElement)
         {
-            var path = PathfindingManager.Instance.FindPath(Coordinates, targetElement.GetCoordinatesAround());
+            var path = PathfindingManager.Instance.FindPath(UnitReference.Coordinates, targetElement.GetCoordinatesAround());
             PathFollowerManager.Instance.GetBestAvailablePath(path);
             if (path.Count <= 1) return;
             
@@ -60,6 +83,10 @@ namespace Pathfinding
             StartFollowPath(path);
         }
 
+        /// <summary>
+        /// Begins following the provided path
+        /// </summary>
+        /// <param name="path">List of coordinates representing the path</param>
         private void StartFollowPath(List<Vector2Int> path)
         {
             if (path.Count <= 1) return;
@@ -69,16 +96,23 @@ namespace Pathfinding
             Destination = ActivePath[^1];
             FollowingPath = true;
         
-            DrawPathVisual();
-            _movementCoroutine = StartCoroutine(FollowPath());
+            DrawPathVisuals();
+            _movementCoroutine = StartCoroutine(FollowPathCoroutine());
         }
     
         private Collider2D[] _results = new Collider2D[8];
 
-        public bool IsElementNearby(Vector2Int waypointCoordinates, GameElement element)
+        /// <summary>
+        /// Checks if a game element is within proximity of specified coordinates
+        /// </summary>
+        /// <param name="waypointCoordinates">Coordinates to check around</param>
+        /// <param name="element">Element to look for</param>
+        /// <param name="radiusInTiles">Radius in tiles to check around the coordinates</param>
+        /// <returns>True if element is found nearby, false otherwise</returns>
+        public bool IsElementNearby(Vector2Int waypointCoordinates, GameElement element, int radiusInTiles = 1)
         {
             _results = new Collider2D[8];
-            Physics2D.OverlapCircleNonAlloc(waypointCoordinates + (Vector2) UnitReference.ParentTilemap.cellSize / 2, 1f, _results, LayerMask.GetMask("GameElements"));
+            Physics2D.OverlapCircleNonAlloc(waypointCoordinates + (Vector2) UnitReference.ParentTilemap.cellSize / 2, radiusInTiles, _results, LayerMask.GetMask("GameElements"));
             if (_results.Length <= 0) return false;
         
             foreach (var result in _results)
@@ -93,6 +127,9 @@ namespace Pathfinding
             return false;
         }
         
+        /// <summary>
+        /// Aborts current path following operation
+        /// </summary>
         private void StopFollowPath()
         {
             if (!FollowingPath) return;
@@ -107,16 +144,21 @@ namespace Pathfinding
             ActivePath = new List<Vector2Int>();
         
             PathFollowerManager.Instance.UnregisterUnitPathFollower(this);
-            OnMovingStop?.Invoke();
         }
 
+        /// <summary>
+        /// Clears all active path visualization markers
+        /// </summary>
         private void ClearPathVisuals()
         {
             PoolingManager.Instance.PathVisualPool.ReturnAllToPool(PathVisuals);
             PathVisuals.Clear();
         }
-        
-        private void DrawPathVisual()
+
+        /// <summary>
+        /// Spawns visual indicators objects to the cell positions of current path
+        /// </summary>
+        private void DrawPathVisuals()
         {
             ClearPathVisuals();
             if (ActivePath == null) return;
@@ -126,10 +168,18 @@ namespace Pathfinding
                     rotation: Quaternion.identity));
         }
 
+        /// <summary>
+        /// Adjusts cell position by adding half cell size offset for proper centering
+        /// </summary>
+        /// <param name="cellPosition">Raw cell coordinates</param>
+        /// <returns>Adjusted world position</returns>
         private Vector3 GetOffsetAppliedCellPosition(Vector2Int cellPosition) =>
             (Vector3)(Vector2)cellPosition + UnitReference.ParentTilemap.cellSize / 2f;
     
-        private IEnumerator FollowPath()
+        /// <summary>
+        /// Coroutine that handles incremental movement along the path
+        /// </summary>
+        private IEnumerator FollowPathCoroutine()
         {
             for (var i = 0; i < ActivePath.Count; i++)
             {
@@ -146,6 +196,11 @@ namespace Pathfinding
             ReachedDestination();
         }
 
+        /// <summary>
+        /// Handles logic when reaching to a waypoint
+        /// </summary>
+        /// <param name="waypointCoordinates">Coordinates of reached waypoint</param>
+        /// <param name="waypointIndex">Index of waypoint in path</param>
         private void ReachedWaypoint(Vector2Int waypointCoordinates, int waypointIndex)
         {
             if (UnitReference.AttackTarget != null && IsElementNearby(waypointCoordinates, UnitReference.AttackTarget))
@@ -161,18 +216,14 @@ namespace Pathfinding
             }
         
             UnitReference.Coordinates = (Vector3Int) waypointCoordinates;
-            OnReachedWaypoint?.Invoke(waypointCoordinates, waypointIndex);
         }
 
+        /// <summary>
+        /// Handles logic when reaching the final destination
+        /// </summary>
         private void ReachedDestination()
         {
             StopFollowPath();
-            OnReachedDestination?.Invoke();
-        }
-
-        private void ReachedGameElement(GameElement element)
-        {
-            
         }
     }
 }
