@@ -26,11 +26,6 @@ namespace Pooling
         [field: SerializeField] public GameObjectPool PathVisualPool { get; private set; }
     
         /// <summary>
-        /// Pool for the health bar elements.
-        /// </summary>
-        [field: SerializeField] public GameObjectPool HealthBarPool { get; private set; }
-    
-        /// <summary>
         /// Pool for the unit produce buttons.
         /// </summary>
         [field: SerializeField] public GameObjectPool UnitProduceButtonPool { get; private set; }

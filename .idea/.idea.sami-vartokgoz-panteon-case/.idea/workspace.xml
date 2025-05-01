@@ -5,16 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dea19160-e68f-46e0-bda7-bd596ae7a62e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/HealthBar.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HealthBar.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HealthBarManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/HealthBarManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameObjectPool.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameObjectPool.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PoolingManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PoolingManager.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnitProductionData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UnitProductionData.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.sami-vartokgoz-panteon-case/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.sami-vartokgoz-panteon-case/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/PureColor.mat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/PureColor.mat.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Barracks.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/Barracks.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Buildings/PowerPlant.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Buildings/PowerPlant.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/HealthBar.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/HealthBar.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit_1x1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Units/Unit_1x1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DevelopmentScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DevelopmentScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CombatSystem/HealthBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CombatSystem/HealthBar.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CombatSystem/HealthBarManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CombatSystem/HealthBarManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameElements/GameElement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameElements/GameElement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Pooling/PoolingManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Pooling/PoolingManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Sprites.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Sprites.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +73,17 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Build\Sami Vartokgoz - Case.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Zexanein\Unity\Projects\sami-vartokgoz-panteon-case\Build" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.45f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\Zexanein\Unity\Projects\sami-vartokgoz-panteon-case -debugCodeOptimization" />
@@ -141,7 +159,7 @@
       <workItem from="1746043425389" duration="116000" />
       <workItem from="1746043562134" duration="12176000" />
       <workItem from="1746061587371" duration="10761000" />
-      <workItem from="1746090974406" duration="12730000" />
+      <workItem from="1746090974406" duration="15758000" />
     </task>
     <servers />
   </component>

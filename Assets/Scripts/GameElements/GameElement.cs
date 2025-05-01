@@ -89,7 +89,7 @@ namespace GameElements
             MaxHealth = blueprint.healthPoints;
             Health = MaxHealth;
             _coordinates = coordinates;
-            HealthBarManager.Instance.RegisterHealthBar(this);
+            //HealthBarManager.Instance.RegisterHealthBar(this);
             OnInitialize();
         }
 
