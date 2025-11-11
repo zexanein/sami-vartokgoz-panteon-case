@@ -27,7 +27,7 @@ It demonstrates a modular, scalable architecture for a tile-based strategy/manag
 
 ---
 
-📁 Project Structure
+Project Structure
 
 ```bash
 Fonts/                             # Contains font files used throughout the project.
@@ -63,7 +63,7 @@ TilePalettes/                      # Tile palette files used in the tilemap edit
 Tiles/                             # Individual tile assets used in tilemaps.
 ```
 
-🛠️ How to Run / Test
+How to Run / Test
 - Clone or download the project
 - Open in Unity 2021.3+
 - Open Scenes/DevelopmentScene
